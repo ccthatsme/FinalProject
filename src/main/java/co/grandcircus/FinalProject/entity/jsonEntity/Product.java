@@ -1,6 +1,4 @@
 package co.grandcircus.FinalProject.entity.jsonEntity;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -23,6 +21,15 @@ public class Product {
     private Double nf_serving_size_qty;
     private String nf_serving_size_unit;
     private Integer nf_serving_weight_grams;
+    private Integer nf_saturated_fat;
+    private Integer nf_trans_fatty_acid;
+    private Integer nf_cholesterol;
+    private Integer nf_sugars;
+    private Integer nf_protein;
+    private Integer nf_vitamin_a_dv;
+    private Integer nf_vitamin_c_dv;
+    private Integer nf_calcium_dv;
+    private Integer nf_iron_dv;
     
    
     
@@ -31,11 +38,17 @@ public class Product {
         // TODO Auto-generated constructor stub
     }
     
-    public Product(String item_id, String item_name, String brand_id, String brand_name, String item_description,
+    
+
+
+
+	public Product(String item_id, String item_name, String brand_id, String brand_name, String item_description,
 			String nf_ingredient_statement, Integer nf_calories, Integer nf_calories_from_fat, Integer nf_total_fat,
 			Integer nf_sodium, Integer nf_total_carbohydrate, Integer nf_dietary_fiber,
 			Double nf_servings_per_container, Double nf_serving_size_qty, String nf_serving_size_unit,
-			Integer nf_serving_weight_grams) {
+			Integer nf_serving_weight_grams, Integer nf_saturated_fat, Integer nf_trans_fatty_acid,
+			Integer nf_cholesterol, Integer nf_sugars, Integer nf_protein, Integer nf_vitamin_a_dv,
+			Integer nf_vitamin_c_dv, Integer nf_calcium_dv, Integer nf_iron_dv) {
 		super();
 		this.item_id = item_id;
 		this.item_name = item_name;
@@ -53,7 +66,18 @@ public class Product {
 		this.nf_serving_size_qty = nf_serving_size_qty;
 		this.nf_serving_size_unit = nf_serving_size_unit;
 		this.nf_serving_weight_grams = nf_serving_weight_grams;
+		this.nf_saturated_fat = nf_saturated_fat;
+		this.nf_trans_fatty_acid = nf_trans_fatty_acid;
+		this.nf_cholesterol = nf_cholesterol;
+		this.nf_sugars = nf_sugars;
+		this.nf_protein = nf_protein;
+		this.nf_vitamin_a_dv = nf_vitamin_a_dv;
+		this.nf_vitamin_c_dv = nf_vitamin_c_dv;
+		this.nf_calcium_dv = nf_calcium_dv;
+		this.nf_iron_dv = nf_iron_dv;
 	}
+
+
 
 
 
@@ -176,6 +200,154 @@ public class Product {
 		this.nf_serving_weight_grams = nf_serving_weight_grams;
 	}
 
+
+
+
+
+	public Integer getNf_saturated_fat() {
+		return nf_saturated_fat;
+	}
+
+
+
+
+
+	public void setNf_saturated_fat(Integer nf_saturated_fat) {
+		this.nf_saturated_fat = nf_saturated_fat;
+	}
+
+
+
+
+
+	public Integer getNf_trans_fatty_acid() {
+		return nf_trans_fatty_acid;
+	}
+
+
+
+
+
+	public void setNf_trans_fatty_acid(Integer nf_trans_fatty_acid) {
+		this.nf_trans_fatty_acid = nf_trans_fatty_acid;
+	}
+
+
+
+
+
+	public Integer getNf_cholesterol() {
+		return nf_cholesterol;
+	}
+
+
+
+
+
+	public void setNf_cholesterol(Integer nf_cholesterol) {
+		this.nf_cholesterol = nf_cholesterol;
+	}
+
+
+
+
+
+	public Integer getNf_sugars() {
+		return nf_sugars;
+	}
+
+
+
+
+
+	public void setNf_sugars(Integer nf_sugars) {
+		this.nf_sugars = nf_sugars;
+	}
+
+
+
+
+
+	public Integer getNf_protein() {
+		return nf_protein;
+	}
+
+
+
+
+
+	public void setNf_protein(Integer nf_protein) {
+		this.nf_protein = nf_protein;
+	}
+
+
+
+
+
+	public Integer getNf_vitamin_a_dv() {
+		return nf_vitamin_a_dv;
+	}
+
+
+
+
+
+	public void setNf_vitamin_a_dv(Integer nf_vitamin_a_dv) {
+		this.nf_vitamin_a_dv = nf_vitamin_a_dv;
+	}
+
+
+
+
+
+	public Integer getNf_vitamin_c_dv() {
+		return nf_vitamin_c_dv;
+	}
+
+
+
+
+
+	public void setNf_vitamin_c_dv(Integer nf_vitamin_c_dv) {
+		this.nf_vitamin_c_dv = nf_vitamin_c_dv;
+	}
+
+
+
+
+
+	public Integer getNf_calcium_dv() {
+		return nf_calcium_dv;
+	}
+
+
+
+
+
+	public void setNf_calcium_dv(Integer nf_calcium_dv) {
+		this.nf_calcium_dv = nf_calcium_dv;
+	}
+
+
+
+
+
+	public Integer getNf_iron_dv() {
+		return nf_iron_dv;
+	}
+
+
+
+
+
+	public void setNf_iron_dv(Integer nf_iron_dv) {
+		this.nf_iron_dv = nf_iron_dv;
+	}
+
+
+
+
+
 	@Override
 	public String toString() {
 		return "Product [item_id=" + item_id + ", item_name=" + item_name + ", brand_id=" + brand_id + ", brand_name="
@@ -185,7 +357,28 @@ public class Product {
 				+ ", nf_total_carbohydrate=" + nf_total_carbohydrate + ", nf_dietary_fiber=" + nf_dietary_fiber
 				+ ", nf_servings_per_container=" + nf_servings_per_container + ", nf_serving_size_qty="
 				+ nf_serving_size_qty + ", nf_serving_size_unit=" + nf_serving_size_unit + ", nf_serving_weight_grams="
-				+ nf_serving_weight_grams + "]";
+				+ nf_serving_weight_grams + ", nf_saturated_fat=" + nf_saturated_fat + ", nf_trans_fatty_acid="
+				+ nf_trans_fatty_acid + ", nf_cholesterol=" + nf_cholesterol + ", nf_sugars=" + nf_sugars
+				+ ", nf_protein=" + nf_protein + ", nf_vitamin_a_dv=" + nf_vitamin_a_dv + ", nf_vitamin_c_dv="
+				+ nf_vitamin_c_dv + ", nf_calcium_dv=" + nf_calcium_dv + ", nf_iron_dv=" + nf_iron_dv
+				+ ", getItem_id()=" + getItem_id() + ", getItem_name()=" + getItem_name() + ", getBrand_id()="
+				+ getBrand_id() + ", getBrand_name()=" + getBrand_name() + ", getItem_description()="
+				+ getItem_description() + ", getNf_ingredient_statement()=" + getNf_ingredient_statement()
+				+ ", getNf_calories()=" + getNf_calories() + ", getNf_calories_from_fat()=" + getNf_calories_from_fat()
+				+ ", getNf_total_fat()=" + getNf_total_fat() + ", getNf_sodium()=" + getNf_sodium()
+				+ ", getNf_total_carbohydrate()=" + getNf_total_carbohydrate() + ", getNf_dietary_fiber()="
+				+ getNf_dietary_fiber() + ", getNf_servings_per_container()=" + getNf_servings_per_container()
+				+ ", getNf_serving_size_qty()=" + getNf_serving_size_qty() + ", getNf_serving_size_unit()="
+				+ getNf_serving_size_unit() + ", getNf_serving_weight_grams()=" + getNf_serving_weight_grams()
+				+ ", getNf_saturated_fat()=" + getNf_saturated_fat() + ", getNf_trans_fatty_acid()="
+				+ getNf_trans_fatty_acid() + ", getNf_cholesterol()=" + getNf_cholesterol() + ", getNf_sugars()="
+				+ getNf_sugars() + ", getNf_protein()=" + getNf_protein() + ", getNf_vitamin_a_dv()="
+				+ getNf_vitamin_a_dv() + ", getNf_vitamin_c_dv()=" + getNf_vitamin_c_dv() + ", getNf_calcium_dv()="
+				+ getNf_calcium_dv() + ", getNf_iron_dv()=" + getNf_iron_dv() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+
+	
+	
     
 }
