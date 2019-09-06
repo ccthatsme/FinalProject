@@ -18,6 +18,9 @@ public class Food {
 	@ManyToMany(mappedBy = "restrictedFood")
 	Set<Restriction> restriction;
 	
+	@ManyToMany(mappedBy = "recipeFood")
+	Set<Recipe> recipe;
+	
 	@ManyToMany(mappedBy = "pantryFood")
 	Set<Pantry> pantry;
 	
