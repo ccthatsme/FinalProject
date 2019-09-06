@@ -8,6 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
+
+import co.grandcircus.FinalProject.entity.jsonEntity.Product;
 
 @Controller
 public class BarcodeNumberController {
@@ -23,7 +26,7 @@ public class BarcodeNumberController {
 	
 	
 	@RequestMapping("/")
-	public String showJsonForBarcodeNum() {
+	public ModelAndView showJsonForBarcodeNum() {
 		String url = "https://nutritionix-api.p.rapidapi.com/v1_1/item?upc=041633052097";
 		HttpHeaders headers = new HttpHeaders();
 		
@@ -32,9 +35,11 @@ public class BarcodeNumberController {
 		headers.add("RapidAPI Project", projId);
 		
 		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-		ResponseEntity<String> response = rt.exchange(url, HttpMethod.GET, entity, String.class);
-		String responseBody = response.getBody();
-		return responseBody;
+		ResponseEntity<Product> response = rt.exchange(url, HttpMethod.GET, entity, Product.class);
+		Product p = response.getBody();
+		
+		//String responseBody = response.getBody();
+		return new ModelAndView("index", "response", p.toString());
 		
 	}
 }
