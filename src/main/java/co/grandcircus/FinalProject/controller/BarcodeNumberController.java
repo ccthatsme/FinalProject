@@ -27,7 +27,7 @@ public class BarcodeNumberController {
 	
 	@RequestMapping("/")
 	public ModelAndView showJsonForBarcodeNum() {
-		String url = "https://nutritionix-api.p.rapidapi.com/v1_1/item?upc=041633052097";
+		String url = "https://nutritionix-api.p.rapidapi.com/v1_1/item?upc=044000032029";
 		HttpHeaders headers = new HttpHeaders();
 		
 		headers.add("x-rapidapi-host", "nutritionix-api.p.rapidapi.com");
@@ -39,7 +39,7 @@ public class BarcodeNumberController {
 		Product p = response.getBody();
 		
 		//String responseBody = response.getBody();
-		return new ModelAndView("index", "response", p.toString());
+		return new ModelAndView("index", "response", p);
 		
 	}
 }
