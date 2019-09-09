@@ -13,8 +13,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
 	public List<User> findByEmail(String email);
 
-	//public void add(User user);
-	
-	
-
 }

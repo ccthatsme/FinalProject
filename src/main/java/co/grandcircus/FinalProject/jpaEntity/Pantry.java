@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ public class Pantry {
 	@OneToOne(mappedBy = "pantry")
     private User user;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 	  name = "pantry_food", 
 	  joinColumns = @JoinColumn(name = "pantry_id"), 
@@ -42,6 +43,13 @@ public class Pantry {
 	public Pantry(User user, List<Food> pantryFood, List<AutoSubtraction> autosubtraction) {
 		super();
 		this.user = user;
+		this.pantryFood = pantryFood;
+		this.autosubtraction = autosubtraction;
+	}
+
+	
+	public Pantry(List<Food> pantryFood, List<AutoSubtraction> autosubtraction) {
+		super();
 		this.pantryFood = pantryFood;
 		this.autosubtraction = autosubtraction;
 	}
