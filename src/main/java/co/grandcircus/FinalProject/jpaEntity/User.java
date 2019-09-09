@@ -58,6 +58,14 @@ public class User {
 		this.pantry = pantry;
 		this.userRestriction = restriction;
 	}
+	
+	
+
+	public User(String email, String password) {
+		super();
+		this.email = email;
+		this.password = password;
+	}
 
 	public Integer getId() {
 		return id;
