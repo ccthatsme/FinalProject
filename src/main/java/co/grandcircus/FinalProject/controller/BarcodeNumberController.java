@@ -136,7 +136,7 @@ public class BarcodeNumberController {
 			foodrepo.save(f);
 			pRepo.save(pantry);
 		}
-		return new ModelAndView("add-success");
+		return new ModelAndView("user-pantry");
 	}
 	
 	//this method should be updated later. right now it checks if a food with the 
