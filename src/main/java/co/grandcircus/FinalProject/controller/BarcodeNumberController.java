@@ -20,7 +20,6 @@ import org.springframework.web.servlet.ModelAndView;
 import co.grandcircus.FinalProject.entity.jsonEntity.Product;
 import co.grandcircus.FinalProject.entity.jsonEntity.ProductResponse;
 import co.grandcircus.FinalProject.helpers.ProductConverter;
-import co.grandcircus.FinalProject.helpers.ScheduledSubtractHandler;
 import co.grandcircus.FinalProject.jpaEntity.Food;
 import co.grandcircus.FinalProject.jpaEntity.Pantry;
 import co.grandcircus.FinalProject.jpaEntity.User;
@@ -138,7 +137,11 @@ public class BarcodeNumberController {
 			foodrepo.save(f);
 			pRepo.save(pantry);
 		}
-		return new ModelAndView("user-pantry");
+		//User u = (User) sess.getAttribute("user");
+		System.out.println(u);
+		Pantry userPantry = u.getPantry();
+		List<Food> userItems = userPantry.getPantryFood();
+		return new ModelAndView("user-pantry2", "test", userItems);
 	}
 	
 	//this method should be updated later. right now it checks if a food with the 
@@ -150,15 +153,15 @@ public class BarcodeNumberController {
 		}
 		return true;
 	}
-	@RequestMapping("user-pantry")
-	public ModelAndView userPantryItems() {
-		//refactor the method findEmail in UserRepo to return a single user and not a list, bc email addresses should be unique
-		User u = (User) sess.getAttribute("user");
-		System.out.println(u);
-		Pantry userPantry = u.getPantry();
-		List<Food> userItems = userPantry.getPantryFood();
+//	@RequestMapping("user-pantry")
+//	public ModelAndView userPantryItems() {
+//		//refactor the method findEmail in UserRepo to return a single user and not a list, bc email addresses should be unique
+//		User u = (User) sess.getAttribute("user");
+//		System.out.println(u);
+//		Pantry userPantry = u.getPantry();
+//		List<Food> userItems = userPantry.getPantryFood();
 	         
-		return new ModelAndView("user-pantry2", "test", userItems);
+//		return new ModelAndView("user-pantry2", "test", userItems);
 		
-	}
+	
 	 }
