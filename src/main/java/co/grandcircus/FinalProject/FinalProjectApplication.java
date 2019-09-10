@@ -2,10 +2,10 @@ package co.grandcircus.FinalProject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import co.grandcircus.FinalProject.helpers.CookingUnitConverter;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
+@EnableScheduling
 public class FinalProjectApplication {
 	
 
