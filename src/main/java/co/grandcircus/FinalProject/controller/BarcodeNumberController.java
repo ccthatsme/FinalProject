@@ -82,15 +82,8 @@ public class BarcodeNumberController {
 
 	@RequestMapping("search")
 	public ModelAndView searchByBarcode(@RequestParam("barcode") String barcode) {
-		String url = "https://trackapi.nutritionix.com/v2/search/item?upc=" + barcode;
-		HttpHeaders headers = new HttpHeaders();
-
-		headers.add("x-app-key", key);
-		headers.add("x-app-id", projId);
-
-		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-		ResponseEntity<ProductResponse> response = rt.exchange(url, HttpMethod.GET, entity, ProductResponse.class);
-		ProductResponse resp = response.getBody();
+		String typeSearch = "upc";
+		ProductResponse resp = apiSearch(barcode, typeSearch);
 		Product p = resp.getFoods().get(0);
 
 		ModelAndView mv = new ModelAndView("search-results");
@@ -101,15 +94,50 @@ public class BarcodeNumberController {
 
 	}
 
-//	@RequestMapping("search-with-words")
-//	public ModelAndView listResults(@RequestParam("search-terms") String term) {
+	public ProductResponse apiSearch(String searchName, String typeSearch) {
+		String url = "https://trackapi.nutritionix.com/v2/search/item?"+ typeSearch +"=" + searchName;
+		HttpHeaders headers = new HttpHeaders();
+
+		headers.add("x-app-key", key);
+		headers.add("x-app-id", projId);
+
+		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+		ResponseEntity<ProductResponse> response = rt.exchange(url, HttpMethod.GET, entity, ProductResponse.class);
+		ProductResponse resp = response.getBody();
+		return resp;
+	}
+
+	@RequestMapping("search-by-keyword")
+	public ModelAndView listKeywordResults(@RequestParam("keyword") String term) {
 //		String url = "https://nutritionix-api.p.rapidapi.com/v1_1/item?phrase=" + term + "&fields=item_name,item_id,brand_name,nf_calories,nf_total_fat,";
 //		HttpHeaders headers = new HttpHeaders();
 //		
 //		headers.add("x-rapidapi-host", "nutritionix-api.p.rapidapi.com");
 //		headers.add("X-RapidAPI-Key", key);
 //		headers.add("RapidAPI Project", projId);
-//	}
+		String typeSearch = "phrase";
+		String url = "https://trackapi.nutritionix.com/v2/search/item?"+ typeSearch +"=" + term + "&fields=item_name,item_id,brand_name,nf_calories,nf_total_fat,";
+		HttpHeaders headers = new HttpHeaders();
+
+		headers.add("x-app-key", key);
+		headers.add("x-app-id", projId);
+
+		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+		ResponseEntity<String> response = rt.exchange(url, HttpMethod.GET, entity, String.class);
+		//ProductResponse resp = response.getBody();
+		
+		
+		//ProductResponse resp = apiSearch(term, typeSearch);
+		//Product p = resp.getFoods().get(0);
+		ModelAndView mv = new ModelAndView("search-results");
+		System.out.println(term + "barcode");
+		System.out.println(response);
+//		mv.addObject("barcode", term);
+//		mv.addObject("response", response);
+		
+		return mv;
+		
+	}
 
 	@RequestMapping("add-to-pantry")
 	public ModelAndView addItem(@RequestParam("barcode") String barcode) {
@@ -194,4 +222,6 @@ public class BarcodeNumberController {
 		
 		return mv;
 	}
+	
+	
 }

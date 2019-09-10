@@ -11,4 +11,6 @@ import co.grandcircus.FinalProject.jpaEntity.Food;
 public interface FoodRepository extends JpaRepository<Food, Integer> {
 
 	public List<Food> findByName(String name);
+	
+	
 }

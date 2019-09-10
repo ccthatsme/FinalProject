@@ -19,6 +19,13 @@
 		<input type="submit" value="Add to Pantry">
 		
 		</form>
+		
+		<form action="search-by-keyword">
+		<input type="text" name="keyword" placeholder="keyword">
+		<input type="submit" value="Search by Keyword">
+		
+		</form>
+		
 
 		<h1>List of Pantry Items</h1>
 
@@ -31,6 +38,7 @@
 				<th>Protein</th>
 				<th>Quantity</th>
 				<th>Quantity Unit</th>
+				<th>Edit</th>
 				
 			</tr>
 			<c:forEach var="a" items="${test}">
@@ -41,6 +49,7 @@
 			<td>${a.protein}</td>
 			<td>${a.quantity}</td>
 			<td>${a.quantityUnit}</td>
+			<td><td><a class="btn btn-secondary" href="edit?id=${a.id}"> edit</a></td>
 		</tr>
 		</c:forEach>
 		</table>
