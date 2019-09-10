@@ -8,5 +8,6 @@
 </head>
 <body>
 thank you for signing up, ${user.email }
+<a href="user-home">Go to your dashboard</a>
 </body>
 </html>
