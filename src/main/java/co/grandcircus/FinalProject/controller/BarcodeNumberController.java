@@ -154,4 +154,4 @@ public class BarcodeNumberController {
 		return new ModelAndView("user-pantry2", "test", userItems);
 		
 	}
-}
+	 }
