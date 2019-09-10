@@ -19,6 +19,13 @@
 		<input type="submit" value="Add to Pantry">
 		
 		</form>
+		
+		<form action="search-by-keyword">
+		<input type="text" name="keyword" placeholder="keyword">
+		<input type="submit" value="Search by Keyword">
+		
+		</form>
+		
 
 		<h1>List of Pantry Items</h1>
 
