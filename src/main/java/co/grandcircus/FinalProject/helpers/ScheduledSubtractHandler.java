@@ -58,6 +58,14 @@ public class ScheduledSubtractHandler {
 			
 			//generate how much the new quantity should be
 			double newQuant = currentQuantity - quantityToSubtract;
+			
+			//check if the new value would be less than 0 and if it would, set it to 0
+			if (newQuant <= 0) {
+				newQuant = 0;
+				System.out.println("You're out of " + f.getName() + "!");
+			}
+			
+			
 			f.setQuantity(newQuant);
 			
 			//save the updated value to the database
