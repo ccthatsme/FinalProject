@@ -26,17 +26,17 @@
 			<tr>
 				
 				<th>ID</th>
-				<th>Brand Name</th>
+				<th>Name</th>
 				<th>Calories</th>
 				<th>Protein</th>
 				<th>Quantity</th>
 				<th>Quantity Unit</th>
 				
 			</tr>
-			<c:forEach var="a" items="${test.results}">
+			<c:forEach var="a" items="${user.pantry.pantryFood}">
 		<tr>
 			<td>${a.id}</td>
-			<td>${a.brandName}</td>
+			<td>${a.name}</td>
 			<td>${a.calories}</td>
 			<td>${a.protein}</td>
 			<td>${a.quantity}</td>
