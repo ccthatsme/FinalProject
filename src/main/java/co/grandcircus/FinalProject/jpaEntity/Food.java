@@ -157,12 +157,12 @@ public class Food {
 		this.fat = fat;
 	}
 
-	@Override
-	public String toString() {
-		return "Food [id=" + id + ", restriction=" + restriction + ", pantry=" + pantry + ", name=" + name
-				+ ", quantity=" + quantity + ", quantityUnit=" + quantityUnit + ", calories=" + calories + ", sugar="
-				+ sugar + ", carbs=" + carbs + ", protein=" + protein + ", fat=" + fat + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Food [id=" + id + ", restriction=" + restriction + ", pantry=" + pantry + ", name=" + name
+//				+ ", quantity=" + quantity + ", quantityUnit=" + quantityUnit + ", calories=" + calories + ", sugar="
+//				+ sugar + ", carbs=" + carbs + ", protein=" + protein + ", fat=" + fat + "]";
+//	}
 	
 	
 }

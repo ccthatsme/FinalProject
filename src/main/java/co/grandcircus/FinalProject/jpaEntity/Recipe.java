@@ -56,9 +56,9 @@ public class Recipe {
 		this.recipeFood = recipeFood;
 	}
 
-	@Override
-	public String toString() {
-		return "Recipe [id=" + id + ", recipeFood=" + recipeFood + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Recipe [id=" + id + ", recipeFood=" + recipeFood + "]";
+//	}
 	
 }

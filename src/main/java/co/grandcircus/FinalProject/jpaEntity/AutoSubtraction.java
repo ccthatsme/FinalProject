@@ -101,11 +101,11 @@ public class AutoSubtraction {
 		this.food = food;
 	}
 
-	@Override
-	public String toString() {
-		return "AutoSubtraction [id=" + id + ", quantity=" + quantity + ", quantityUnit=" + quantityUnit
-				+ ", frequency=" + frequency + ", pantry=" + pantry + ", food=" + food + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "AutoSubtraction [id=" + id + ", quantity=" + quantity + ", quantityUnit=" + quantityUnit
+//				+ ", frequency=" + frequency + ", pantry=" + pantry + ", food=" + food + "]";
+//	}
 	
 	
 }

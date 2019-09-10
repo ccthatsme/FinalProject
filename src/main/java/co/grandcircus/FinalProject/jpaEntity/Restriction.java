@@ -69,10 +69,10 @@ public class Restriction {
 		this.user = user;
 	}
 
-	@Override
-	public String toString() {
-		return "Restriction [id=" + id + ", restrictedFood=" + restrictedFood + ", user=" + user + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Restriction [id=" + id + ", restrictedFood=" + restrictedFood + ", user=" + user + "]";
+//	}
 	
 	
 }

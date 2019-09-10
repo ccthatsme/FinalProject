@@ -105,11 +105,11 @@ public class User {
 		this.userRestriction = restriction;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", email=" + email + ", password=" + password + ", pantry=" + pantry
-				 + ", restriction=" + userRestriction + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "User [id=" + id + ", email=" + email + ", password=" + password + ", pantry=" + pantry
+//				 + ", restriction=" + userRestriction + "]";
+//	}
 	
 	
 }

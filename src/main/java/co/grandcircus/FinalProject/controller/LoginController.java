@@ -39,7 +39,7 @@ public class LoginController {
 	@RequestMapping("login")
 	public ModelAndView getUser(@RequestParam("email") String email, @RequestParam("password") String password) {
 		User user = new User(email, password, new Pantry(new ArrayList<Food>(), new ArrayList<AutoSubtraction>()), new ArrayList<Restriction>());
-			if (repo.findByEmail(email).size() == 0) {
+			if (repo.findByEmail(email) == null) {
 				session.setAttribute("user", user);
 				Pantry p = user.getPantry();
 				p.setUser(user);
@@ -48,7 +48,7 @@ public class LoginController {
 				return new ModelAndView("register-success", "user", user);
 			}
 			else {
-				User u = repo.findByEmail(user.getEmail()).get(0);
+				User u = repo.findByEmail(user.getEmail());
 				session.setAttribute("user", u);
 				return new ModelAndView("returning-user", "user", user);
 			}
@@ -57,7 +57,7 @@ public class LoginController {
 	@RequestMapping("register")
 	public ModelAndView register(User user) {
 		ModelAndView mv;
-		if (repo.findByEmail(user.getEmail()).size() == 0) {
+		if (repo.findByEmail(user.getEmail()) == null) {
 			session.setAttribute("user", user);
 			mv = new ModelAndView("page", "user", user);
 		}

@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +28,7 @@ import co.grandcircus.FinalProject.repository.PantryRepository;
 import co.grandcircus.FinalProject.repository.UserRepository;
 
 @Controller
+@SessionAttributes("user")
 public class BarcodeNumberController {
 
 	ProductConverter convert = new ProductConverter();
@@ -140,5 +142,16 @@ public class BarcodeNumberController {
 			return false;
 		}
 		return true;
+	}
+	@RequestMapping("user-pantry")
+	public ModelAndView userPantryItems() {
+		//refactor the method findEmail in UserRepo to return a single user and not a list, bc email addresses should be unique
+		User u = (User) sess.getAttribute("user");
+		System.out.println(u);
+		Pantry userPantry = u.getPantry();
+		List<Food> userItems = userPantry.getPantryFood();
+	         
+		return new ModelAndView("user-pantry2", "test", userItems);
+		
 	}
 }
