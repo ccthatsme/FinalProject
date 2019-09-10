@@ -1,9 +1,7 @@
 package co.grandcircus.FinalProject.jpaEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,8 +30,8 @@ public class Pantry {
 	  inverseJoinColumns = @JoinColumn(name = "food_id"))
 	List<Food> pantryFood;
 	
-	@OneToMany(mappedBy="pantry", cascade=CascadeType.ALL, orphanRemoval=true)
-	List<AutoSubtraction> autosubtraction = new ArrayList<>();
+	@OneToMany(mappedBy="pantry") //, cascade=CascadeType.ALL, orphanRemoval=true
+	List<AutoSubtraction> autosubtraction;
 
 	public Pantry() {
 		super();
@@ -95,10 +93,10 @@ public class Pantry {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Pantry [id=" + id;
-	}
+//	@Override
+//	public String toString() {
+//		return "Pantry [id=" + id;
+//	}
 
 
 	

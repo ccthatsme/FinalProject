@@ -12,9 +12,9 @@
 <h4>
 Auto-subtractions
 </h4>
-<c:forEach items="${user.pantry.autosubtraction }" var="subtraction">
-<h5>${subtraction.food.name }</h5><br>
-${subtraction.quantity } ${subtraction.quantityUnit } per day<br>
+<c:forEach items="${subtractions }" var="sub">
+<h5>${sub.food.name }</h5><br>
+${sub.quantity } ${sub.quantityUnit } per day<br>
 
 </c:forEach>
 

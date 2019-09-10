@@ -20,8 +20,10 @@ import org.springframework.web.servlet.ModelAndView;
 import co.grandcircus.FinalProject.entity.jsonEntity.Product;
 import co.grandcircus.FinalProject.entity.jsonEntity.ProductResponse;
 import co.grandcircus.FinalProject.helpers.ProductConverter;
+import co.grandcircus.FinalProject.jpaEntity.AutoSubtraction;
 import co.grandcircus.FinalProject.jpaEntity.Food;
 import co.grandcircus.FinalProject.jpaEntity.Pantry;
+import co.grandcircus.FinalProject.jpaEntity.Restriction;
 import co.grandcircus.FinalProject.jpaEntity.User;
 import co.grandcircus.FinalProject.repository.AutoSubtractionRepository;
 import co.grandcircus.FinalProject.repository.FoodRepository;
@@ -179,6 +181,17 @@ public class BarcodeNumberController {
 	@RequestMapping("acct-page")
 	public ModelAndView showAcctPage() {
 		User u = (User) sess.getAttribute("user");
-		return new ModelAndView("acct-page", "user", u);
+		
+		ModelAndView mv = new ModelAndView("acct-page");
+		
+		mv.addObject("user", u);
+		
+		List<AutoSubtraction> subList = aRepo.findByPantry(u.getPantry());
+		mv.addObject("subtractions", subList);
+		
+		List<Restriction> restrictionList = u.getRestriction();
+		mv.addObject("restrictions", restrictionList);
+		
+		return mv;
 	}
 }
