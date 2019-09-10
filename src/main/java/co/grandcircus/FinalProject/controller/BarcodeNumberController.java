@@ -170,4 +170,15 @@ public class BarcodeNumberController {
 		return new ModelAndView("user-home", "user", u);
 	}
 
+	@RequestMapping("user-pantry")
+	public ModelAndView showUserPantry() {
+		User u = (User) sess.getAttribute("user");
+		return new ModelAndView("user-pantry", "user", u);
+	}
+	
+	@RequestMapping("acct-page")
+	public ModelAndView showAcctPage() {
+		User u = (User) sess.getAttribute("user");
+		return new ModelAndView("acct-page", "user", u);
+	}
 }
