@@ -1,6 +1,7 @@
 package co.grandcircus.FinalProject.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -223,5 +225,29 @@ public class BarcodeNumberController {
 		return mv;
 	}
 	
+	@RequestMapping("manage-subtractions")
+	public ModelAndView showSubtractionPage() {
+		ModelAndView mv = new ModelAndView("subtraction-manager");
+		User u = (User) sess.getAttribute("user");
+		List<AutoSubtraction> subList = aRepo.findByPantry(u.getPantry());
+		mv.addObject("subtractions", subList);
+		mv.addObject("user", u);
+		return mv;
+		
+	}
 	
+	@RequestMapping("add-auto")
+	public ModelAndView addAuto(@RequestParam("qty") Double qtyNum, @RequestParam("unitChoice") String unit, @RequestParam("food") Integer foodId, @RequestParam("pantry") Integer pantryId) {
+		User u = (User) sess.getAttribute("user");
+		Optional<Pantry> pantry = pRepo.findById(pantryId);
+		Pantry p = pantry.get();
+		System.out.println("PANTRY ID IS: " + pantryId);
+		Optional<Food> food = foodrepo.findById(foodId);
+		Food f = food.get();
+		System.out.println("FOOD ID IS: " + foodId);
+		AutoSubtraction newsub = new AutoSubtraction(qtyNum, unit, 50000, p, f);
+		aRepo.save(newsub);
+		return new ModelAndView("acct-page");
+	}
+
 }
