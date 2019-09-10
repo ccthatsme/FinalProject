@@ -94,11 +94,12 @@ public class Pantry {
 		this.autosubtraction = autosubtraction;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Pantry [id=" + id + ", user=" + user + ", pantryFood=" + pantryFood + ", autosubtraction="
-//				+ autosubtraction + "]";
-//	}
+
+	@Override
+	public String toString() {
+		return "Pantry [id=" + id;
+	}
+
 
 	
 }

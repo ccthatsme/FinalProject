@@ -20,9 +20,11 @@ import org.springframework.web.servlet.ModelAndView;
 import co.grandcircus.FinalProject.entity.jsonEntity.Product;
 import co.grandcircus.FinalProject.entity.jsonEntity.ProductResponse;
 import co.grandcircus.FinalProject.helpers.ProductConverter;
+import co.grandcircus.FinalProject.helpers.ScheduledSubtractHandler;
 import co.grandcircus.FinalProject.jpaEntity.Food;
 import co.grandcircus.FinalProject.jpaEntity.Pantry;
 import co.grandcircus.FinalProject.jpaEntity.User;
+import co.grandcircus.FinalProject.repository.AutoSubtractionRepository;
 import co.grandcircus.FinalProject.repository.FoodRepository;
 import co.grandcircus.FinalProject.repository.PantryRepository;
 import co.grandcircus.FinalProject.repository.UserRepository;
@@ -42,6 +44,9 @@ public class BarcodeNumberController {
 	@Autowired
 	UserRepository uRepo;
 	
+	@Autowired
+	AutoSubtractionRepository aRepo;
+	
 	RestTemplate rt = new RestTemplate();
 	
 	@Value("${nutritionix-barcode.key}")
@@ -53,22 +58,24 @@ public class BarcodeNumberController {
 	@Autowired
 	HttpSession sess;
 	
+//	@Autowired
+//	ScheduledSubtractHandler schedule;
 	
 	@RequestMapping("/")
 	public ModelAndView showJsonForBarcodeNum() {
-		String url = "https://trackapi.nutritionix.com/v2/search/item?upc=044000032029";
-		HttpHeaders headers = new HttpHeaders();
-		
-		headers.add("x-app-key", key);
-		headers.add("x-app-id", projId);
-		
-		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-		ResponseEntity<ProductResponse> response = rt.exchange(url, HttpMethod.GET, entity, ProductResponse.class);
-		ProductResponse rep = response.getBody();
-		Product prod = rep.getFoods().get(0);
+//		String url = "https://trackapi.nutritionix.com/v2/search/item?upc=044000032029";
+//		HttpHeaders headers = new HttpHeaders();
+//		
+//		headers.add("x-app-key", key);
+//		headers.add("x-app-id", projId);
+//		
+//		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+//		ResponseEntity<ProductResponse> response = rt.exchange(url, HttpMethod.GET, entity, ProductResponse.class);
+//		ProductResponse rep = response.getBody();
+//		Product prod = rep.getFoods().get(0);
 		
 		//String responseBody = response.getBody();
-		return new ModelAndView("index", "response", prod);
+		return new ModelAndView("index", "response", aRepo.findAll());
 		
 	}
 	
