@@ -96,8 +96,7 @@ public class Pantry {
 
 	@Override
 	public String toString() {
-		return "Pantry [id=" + id + ", user=" + user + ", pantryFood=" + pantryFood + ", autosubtraction="
-				+ autosubtraction + "]";
+		return "Pantry [id=" + id;
 	}
 
 	
