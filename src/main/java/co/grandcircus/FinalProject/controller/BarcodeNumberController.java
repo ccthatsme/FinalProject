@@ -75,7 +75,7 @@ public class BarcodeNumberController {
 //		Product prod = rep.getFoods().get(0);
 		
 		//String responseBody = response.getBody();
-		return new ModelAndView("index", "response", aRepo.findAll());
+		return new ModelAndView("log-in");
 		
 	}
 	
