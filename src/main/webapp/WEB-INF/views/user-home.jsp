@@ -28,6 +28,7 @@
 							href="user-pantry">Pantry <span class="sr-only">(current)</span></a>
 						</li>
 						<li class="nav-item"><a class="nav-link" href="acct-page">Account</a>
+						<li class="nav-item"><a class="nav-link" href="meal-page">Creat your Meal</a>
 						</li>
 					</ul>
 					<form class="form-inline my-2 my-lg-0" action="search">
