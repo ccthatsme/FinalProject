@@ -33,6 +33,18 @@ public class EditController {
 	@RequestMapping("delete")
 	public ModelAndView delete(@RequestParam("id") int id) {
 		foodRepo.deleteById(id);
-		return new ModelAndView("add-to-pantry");
+		return new ModelAndView("user-pantry2");
 	}
+//	@RequestMapping("add-to")
+//	public ModelAndView addTo(@RequestParam("id") int id) {
+//		foodRepo.save(foodRepo.findByFoodId(id));
+//		return new ModelAndView("add-to-pantry");
+//	}
+//	@RequestMapping("subtract-from")
+//	public ModelAndView subtractFrom(@RequestParam("id") int id) {
+//		
+//		return new ModelAndView("add-to-pantry");
+//	}
+//	
+
 }

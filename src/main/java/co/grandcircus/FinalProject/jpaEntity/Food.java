@@ -184,5 +184,5 @@ public class Food {
 		this.autosubtraction = autosubtraction;
 	}
 
-	
+
 }

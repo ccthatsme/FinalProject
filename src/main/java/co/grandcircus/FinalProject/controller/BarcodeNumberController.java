@@ -12,7 +12,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -173,8 +172,7 @@ public class BarcodeNumberController {
 		System.out.println(u);
 		Pantry userPantry = u.getPantry();
 		List<Food> userItems = userPantry.getPantryFood();
-		return new ModelAndView("user-pantry2"
-				+ "", "test", userItems);
+		return new ModelAndView("user-pantry2" + "", "test", userItems);
 	}
 
 	// this method should be updated later. right now it checks if a food with the

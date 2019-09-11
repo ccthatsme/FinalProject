@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
 		<h1></h1>
 		<h1>Add Items</h1>
 		<form action="add-to-pantry">
-		<input type="text" name="UPC Code" placeholder="UPC Code">
+		<input type="text" name="barcode" placeholder="UPC Code">
 		<input type="submit" value="Add to Pantry">
 		
 		</form>
@@ -43,7 +43,7 @@
 				<th>Edit</th>
 				
 			</tr>
-			<c:forEach var="a" items="${user.pantry.pantryFood}">
+			<c:forEach var="a" items="${test}"> <!-- this was used in the first user pantry user.pantry.pantryFood -->
 		<tr>
 			<td>${a.id}</td>
 			<td>${a.name}</td>
@@ -53,6 +53,8 @@
 			<td>${a.quantityUnit}</td>
 			<td><td><a class="btn btn-secondary" href="edit?id=${a.id}"> edit</a></td>
 			<td><td><a class="btn btn-secondary" href="delete?id=${a.id}"> delete</a></td>
+			<td><td><a class="btn btn-secondary" href="add to?id=${a.id}"> add</a></td>
+			<td><td><a class="btn btn-secondary" href="subtract from?id=${a.id}"> subtract</a></td>
 		</tr>
 		</c:forEach>
 		</table>
