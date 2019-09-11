@@ -53,8 +53,8 @@
 			<td>${a.quantityUnit}</td>
 			<td><td><a class="btn btn-secondary" href="edit?id=${a.id}"> edit</a></td>
 			<td><td><a class="btn btn-secondary" href="delete?id=${a.id}"> delete</a></td>
-			<td><td><a class="btn btn-secondary" href="add to?id=${a.id}"> add</a></td>
-			<td><td><a class="btn btn-secondary" href="subtract from?id=${a.id}"> subtract</a></td>
+			<td><td><a class="btn btn-secondary" href="add-to?id=${a.id}&barcode=${barcode}"> add</a></td>
+			<td><td><a class="btn btn-secondary" href="subtract-from?id=${a.id}"> subtract</a></td>
 		</tr>
 		</c:forEach>
 		</table>

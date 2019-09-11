@@ -36,9 +36,9 @@ public class EditController {
 		return new ModelAndView("user-pantry2");
 	}
 //	@RequestMapping("add-to")
-//	public ModelAndView addTo(@RequestParam("id") int id) {
-//		foodRepo.save(foodRepo.findByFoodId(id));
-//		return new ModelAndView("add-to-pantry");
+//	public ModelAndView addTo(@RequestParam("id") int id, @RequestParam ("barcode") String barcode) {
+//		foodRepo.save(foodRepo.findById(id).orElse(null));
+//		return new ModelAndView("redirect:/add-to-pantry?barcode=" + barcode );
 //	}
 //	@RequestMapping("subtract-from")
 //	public ModelAndView subtractFrom(@RequestParam("id") int id) {

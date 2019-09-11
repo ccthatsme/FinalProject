@@ -96,7 +96,7 @@ public class BarcodeNumberController {
 	}
 
 	public ProductResponse apiSearch(String searchName, String typeSearch) {
-		String url = "https://trackapi.nutritionix.com/v2/search/item?"+ typeSearch +"=" + searchName;
+		String url = "https://trackapi.nutritionix.com/v2/search/item?" + typeSearch + "=" + searchName;
 		HttpHeaders headers = new HttpHeaders();
 
 		headers.add("x-app-key", key);
@@ -117,7 +117,8 @@ public class BarcodeNumberController {
 //		headers.add("X-RapidAPI-Key", key);
 //		headers.add("RapidAPI Project", projId);
 		String typeSearch = "phrase";
-		String url = "https://trackapi.nutritionix.com/v2/search/item?"+ typeSearch +"=" + term + "&fields=item_name,item_id,brand_name,nf_calories,nf_total_fat,";
+		String url = "https://trackapi.nutritionix.com/v2/search/item?" + typeSearch + "=" + term
+				+ "&fields=item_name,item_id,brand_name,nf_calories,nf_total_fat,";
 		HttpHeaders headers = new HttpHeaders();
 
 		headers.add("x-app-key", key);
@@ -125,23 +126,22 @@ public class BarcodeNumberController {
 
 		HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
 		ResponseEntity<String> response = rt.exchange(url, HttpMethod.GET, entity, String.class);
-		//ProductResponse resp = response.getBody();
-		
-		
-		//ProductResponse resp = apiSearch(term, typeSearch);
-		//Product p = resp.getFoods().get(0);
+		// ProductResponse resp = response.getBody();
+
+		// ProductResponse resp = apiSearch(term, typeSearch);
+		// Product p = resp.getFoods().get(0);
 		ModelAndView mv = new ModelAndView("search-results");
 		System.out.println(term + "barcode");
 		System.out.println(response);
 //		mv.addObject("barcode", term);
 //		mv.addObject("response", response);
-		
+
 		return mv;
-		
+
 	}
 
 	@RequestMapping("add-to-pantry")
-	public ModelAndView addItem(@RequestParam("barcode") String barcode) {
+	public ModelAndView addItem(@RequestParam(value = "barcode", required = false) String barcode) {
 		String url = "https://trackapi.nutritionix.com/v2/search/item?upc=" + barcode;
 		HttpHeaders headers = new HttpHeaders();
 
@@ -172,7 +172,9 @@ public class BarcodeNumberController {
 		System.out.println(u);
 		Pantry userPantry = u.getPantry();
 		List<Food> userItems = userPantry.getPantryFood();
-		return new ModelAndView("user-pantry2" + "", "test", userItems);
+		ModelAndView mv =  new ModelAndView("user-pantry2" + "", "test", userItems);
+		mv.addObject("barcode", barcode);
+		return mv;
 	}
 
 	// this method should be updated later. right now it checks if a food with the
@@ -206,24 +208,24 @@ public class BarcodeNumberController {
 		User u = (User) sess.getAttribute("user");
 		return new ModelAndView("user-pantry", "user", u);
 	}
-	
+
 	@RequestMapping("acct-page")
 	public ModelAndView showAcctPage() {
 		User u = (User) sess.getAttribute("user");
-		
+
 		ModelAndView mv = new ModelAndView("acct-page");
-		
+
 		mv.addObject("user", u);
-		
+
 		List<AutoSubtraction> subList = aRepo.findByPantry(u.getPantry());
 		mv.addObject("subtractions", subList);
-		
+
 		List<Restriction> restrictionList = u.getRestriction();
 		mv.addObject("restrictions", restrictionList);
-		
+
 		return mv;
 	}
-	
+
 	@RequestMapping("manage-subtractions")
 	public ModelAndView showSubtractionPage() {
 		ModelAndView mv = new ModelAndView("subtraction-manager");
@@ -232,16 +234,17 @@ public class BarcodeNumberController {
 		mv.addObject("subtractions", subList);
 		mv.addObject("user", u);
 		return mv;
-		
+
 	}
-	
+
 	@RequestMapping("add-auto")
-	public ModelAndView addAuto(@RequestParam("qty") Double qtyNum, @RequestParam("unitChoice") String unit, @RequestParam("food") Integer foodId, @RequestParam("pantry") Integer pantryId) {
-		
-		//get the correct user so we can get their information
+	public ModelAndView addAuto(@RequestParam("qty") Double qtyNum, @RequestParam("unitChoice") String unit,
+			@RequestParam("food") Integer foodId, @RequestParam("pantry") Integer pantryId) {
+
+		// get the correct user so we can get their information
 		User u = (User) sess.getAttribute("user");
-		
-		//we get their pantry
+
+		// we get their pantry
 		Optional<Pantry> pantry = pRepo.findById(pantryId);
 		Pantry p = pantry.get();
 		System.out.println("PANTRY ID IS: " + pantryId);
@@ -250,11 +253,10 @@ public class BarcodeNumberController {
 		System.out.println("FOOD ID IS: " + foodId);
 		AutoSubtraction newsub = new AutoSubtraction(qtyNum, unit, 50000, p, f);
 		aRepo.save(newsub);
-		
+
 		System.out.println(newsub);
-		
+
 		return new ModelAndView("acct-page");
 	}
 
-	
 }
