@@ -34,7 +34,7 @@
 			<td>${a.protein}</td>
 			<td>${a.quantity}</td>
 			<td>${a.quantityUnit}</td>
-			<td><a class="btn btn-secondary" href="edit?id=${a.id}">Add</a></td>
+			<td><a class="btn btn-secondary" href="edit-meal?id=${a.id}">Add</a></td>
 			
 		</tr>
 		</c:forEach>
