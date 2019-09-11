@@ -173,7 +173,8 @@ public class BarcodeNumberController {
 		System.out.println(u);
 		Pantry userPantry = u.getPantry();
 		List<Food> userItems = userPantry.getPantryFood();
-		return new ModelAndView("user-pantry2", "test", userItems);
+		return new ModelAndView("user-pantry2"
+				+ "", "test", userItems);
 	}
 
 	// this method should be updated later. right now it checks if a food with the

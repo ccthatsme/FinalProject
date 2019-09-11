@@ -7,6 +7,8 @@
 <title>User Account</title>
 </head>
 <body>
+<!-- This is an include directive and allows us to reuse other files in our pages so we don't have to duplicate code -->
+    <%@ include file="partials/header.jsp"%>
 <h4>Email Address</h4>
 <p>${user.email }</p>
 <h4>
