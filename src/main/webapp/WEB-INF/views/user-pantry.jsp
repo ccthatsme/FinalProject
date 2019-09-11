@@ -39,6 +39,9 @@
 				<th>Protein</th>
 				<th>Quantity</th>
 				<th>Quantity Unit</th>
+				<th>Add</th>
+				<th>Subtract</th>
+				<th>Delete</th>
 				
 			</tr>
 			<c:forEach var="a" items="${user.pantry.pantryFood}">
@@ -49,6 +52,10 @@
 			<td>${a.protein}</td>
 			<td>${a.quantity}</td>
 			<td>${a.quantityUnit}</td>
+			<td><a class="btn btn-secondary" href="go-to-add-page?id=${a.id}"> add</a></td>
+			<td><a class="btn btn-secondary" href="subtract-from?id=${a.id}"> subtract</a></td>
+			<td><a class="btn btn-secondary" href="delete?id=${a.id}"> delete</a></td>
+			
 		</tr>
 		</c:forEach>
 		</table>

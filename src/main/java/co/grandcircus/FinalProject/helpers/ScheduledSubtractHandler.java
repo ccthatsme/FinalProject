@@ -47,7 +47,7 @@ public class ScheduledSubtractHandler {
 //        System.out.println("The time is now " + dateFormat.format(new Date()));
 //	}
 	
-	@Scheduled(fixedRate = 5000)
+	@Scheduled(fixedRate = 50000)
 	public void handleAutoSubtractions() {
 		ArrayList<AutoSubtraction> subList = (ArrayList<AutoSubtraction>) aRepo.findAll();
 		for (AutoSubtraction sub : subList) {

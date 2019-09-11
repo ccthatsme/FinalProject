@@ -1,17 +1,27 @@
 package co.grandcircus.FinalProject.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import co.grandcircus.FinalProject.helpers.CookingUnitConverter;
+import co.grandcircus.FinalProject.jpaEntity.Food;
+import co.grandcircus.FinalProject.jpaEntity.User;
 import co.grandcircus.FinalProject.repository.FoodRepository;
 
 @Controller
 public class EditController {
 	@Autowired
 	FoodRepository foodRepo;
+	
+	@Autowired 
+	HttpSession session;
+	
+	CookingUnitConverter converter = new CookingUnitConverter();
 
 	@RequestMapping("edit")
 	public ModelAndView edit(@RequestParam("id") int id) {
@@ -30,16 +40,36 @@ public class EditController {
 
 	}
 
-	@RequestMapping("delete")
-	public ModelAndView delete(@RequestParam("id") int id) {
-		foodRepo.deleteById(id);
-		return new ModelAndView("user-pantry2");
-	}
-//	@RequestMapping("add-to")
-//	public ModelAndView addTo(@RequestParam("id") int id, @RequestParam ("barcode") String barcode) {
-//		foodRepo.save(foodRepo.findById(id).orElse(null));
-//		return new ModelAndView("redirect:/add-to-pantry?barcode=" + barcode );
+//	@RequestMapping("delete")
+//	public ModelAndView delete(@RequestParam("id") int id) {
+//		foodRepo.deleteById(id);
+//		return new ModelAndView("user-pantry2");
 //	}
+	
+	@RequestMapping("go-to-add-page")
+	public ModelAndView goToAddPage(@RequestParam("id") Integer id) {
+		Food f = foodRepo.findById(id).get();
+		return new ModelAndView("add-to-pantry", "food", f);
+	}
+	
+	@RequestMapping("add-amt")
+	public ModelAndView addAmount(@RequestParam("food") Integer id, @RequestParam("qty") Double qtyToAdd, @RequestParam("unitChoice") String additionUnit) {
+		Food f = foodRepo.findById(id).get();
+		String targetUnit = f.getQuantityUnit();
+		Double initialQty = f.getQuantity();
+		
+		Double convertedSubtraction = converter.convert(qtyToAdd, additionUnit, targetUnit);
+		
+		Double newAmt = initialQty + convertedSubtraction;
+		
+		f.setQuantity(newAmt);
+		foodRepo.save(f);
+		
+		User u = (User) session.getAttribute("user");
+		
+		return new ModelAndView("user-pantry", "a", u);
+	}
+	
 //	@RequestMapping("subtract-from")
 //	public ModelAndView subtractFrom(@RequestParam("id") int id) {
 //		
