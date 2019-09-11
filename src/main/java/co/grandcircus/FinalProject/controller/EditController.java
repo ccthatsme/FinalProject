@@ -70,6 +70,29 @@ public class EditController {
 		return new ModelAndView("user-pantry", "a", u);
 	}
 	
+	@RequestMapping("go-to-subtract-page")
+	public ModelAndView goToSubtractPage(@RequestParam("id") Integer id) {
+		Food f = foodRepo.findById(id).get();
+		return new ModelAndView("subtract-from-pantry", "food", f);
+	}
+	
+	@RequestMapping("subtract-amt")
+	public ModelAndView subtractAmount(@RequestParam("food") Integer id, @RequestParam("qty") Double qtyToAdd, @RequestParam("unitChoice") String additionUnit) {
+		Food f = foodRepo.findById(id).get();
+		String targetUnit = f.getQuantityUnit();
+		Double initialQty = f.getQuantity();
+		
+		Double convertedSubtraction = converter.convert(qtyToAdd, additionUnit, targetUnit);
+		
+		Double newAmt = initialQty - convertedSubtraction;
+		
+		f.setQuantity(newAmt);
+		foodRepo.save(f);
+		
+		User u = (User) session.getAttribute("user");
+		
+		return new ModelAndView("user-pantry", "a", u);
+	}
 //	@RequestMapping("subtract-from")
 //	public ModelAndView subtractFrom(@RequestParam("id") int id) {
 //		

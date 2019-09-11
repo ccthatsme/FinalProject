@@ -53,7 +53,7 @@
 			<td>${a.quantity}</td>
 			<td>${a.quantityUnit}</td>
 			<td><a class="btn btn-secondary" href="go-to-add-page?id=${a.id}"> add</a></td>
-			<td><a class="btn btn-secondary" href="subtract-from?id=${a.id}"> subtract</a></td>
+			<td><a class="btn btn-secondary" href="go-to-subtract-page?id=${a.id}"> subtract</a></td>
 			<td><a class="btn btn-secondary" href="delete?id=${a.id}"> delete</a></td>
 			
 		</tr>
