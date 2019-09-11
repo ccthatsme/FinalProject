@@ -141,7 +141,7 @@ public class BarcodeNumberController {
 	}
 
 	@RequestMapping("add-to-pantry")
-	public ModelAndView addItem(@RequestParam("barcode") String barcode) {
+	public ModelAndView addItem(@RequestParam("barcode") String barcode, @RequestParam("quantity") Double quantity, @RequestParam("unitChoice") String unit) {
 		String url = "https://trackapi.nutritionix.com/v2/search/item?upc=" + barcode;
 		HttpHeaders headers = new HttpHeaders();
 
@@ -153,6 +153,9 @@ public class BarcodeNumberController {
 		Product p = response.getBody().getFoods().get(0);
 
 		Food f = convert.convertFood(p);
+		f.setQuantity(quantity);
+		f.setQuantityUnit(unit);
+		
 		User u = (User) sess.getAttribute("user");
 
 		// if the food exists, we dont want to add a duplicate entry to the database, we
