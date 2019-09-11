@@ -10,6 +10,8 @@
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-hVpXlpdRmJ+uXGwD5W6HZMnR9ENcKVRn855pPbuI/mwPIEKAuKgTKgGksVGmlAvt" crossorigin="anonymous">
 </head>
 <body>
+<!-- This is an include directive and allows us to reuse other files in our pages so we don't have to duplicate code -->
+    <%@ include file="partials/header.jsp"%>
 <div class="container">
 <h1>Welcome to your Pantry</h1>
 		<h1></h1>

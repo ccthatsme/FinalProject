@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+<!-- This is an include directive and allows us to reuse other files in our pages so we don't have to duplicate code -->
+    <%@ include file="partials/header.jsp"%>
 <h1>How much are you using?</h1>
 <form action="edit-selection">
 ${food } <input type="hidden" value="${food }" name="id">

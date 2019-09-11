@@ -10,6 +10,8 @@
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css" rel="stylesheet" integrity="sha384-hVpXlpdRmJ+uXGwD5W6HZMnR9ENcKVRn855pPbuI/mwPIEKAuKgTKgGksVGmlAvt" crossorigin="anonymous">
 </head>
 <body>
+<!-- This is an include directive and allows us to reuse other files in our pages so we don't have to duplicate code -->
+    <%@ include file="partials/header.jsp"%>
 Item Name- ${response.food_name }<br>
 Calories- ${response.nf_calories }<br>
 Protein- ${response.nf_protein }<br>
