@@ -16,6 +16,17 @@ Item Name- ${response.food_name }<br>
 Calories- ${response.nf_calories }<br>
 Protein- ${response.nf_protein }<br>
 Brand Name- ${response.brand_name }<br>
-<form action="add-to-pantry"><input type="hidden" value="${barcode }" name="barcode"><input type="submit" value="Add to Pantry"></form>
+<form action="add-to-pantry">
+<input type="hidden" value="${barcode }" name="barcode">
+<input type="number" name="quantity" required>
+<input list="unitChoice" name="unitChoice" required > <datalist
+							id="unitChoice">
+							<option value="cups">
+							<option value="tsp">
+							<option value="tbsp">
+							<option value="oz">
+						</datalist>
+<input type="submit" value="Add to Pantry">
+</form>
 </body>
 </html>
