@@ -19,13 +19,13 @@ public class AutoSubtraction {
 	private Integer frequency;
 	
 	@ManyToOne
-	@JoinColumn(name="pantry_fk", insertable=false, updatable=false) //These false values are because this data should only 
-	//be managed from the team table
+	@JoinColumn(name="pantry_id") //These false values are because this data should only 
+	//be managed from the pantry table
 	private Pantry pantry;
 	
 	@ManyToOne
-	@JoinColumn(name="food_fk", insertable=false, updatable=false) //These false values are because this data should only 
-	//be managed from the team table
+	@JoinColumn(name="food_id") //These false values are because this data should only 
+	//be managed from the food table
 	private Food food;
 
 	public AutoSubtraction() {
@@ -104,7 +104,7 @@ public class AutoSubtraction {
 	@Override
 	public String toString() {
 		return "AutoSubtraction [id=" + id + ", quantity=" + quantity + ", quantityUnit=" + quantityUnit
-				+ ", frequency=" + frequency + ", pantry=" + pantry.getUser().getEmail() + ", food=" + food.getId() + "]";
+				+ ", frequency=" + frequency + ", pantry=" + pantry.getUser().getEmail() + ", food=" + food.getName() + "]";
 	}
 	
 	

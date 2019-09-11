@@ -26,6 +26,8 @@ public class ScheduledSubtractHandler {
 	@Autowired
 	AutoSubtractionRepository aRepo;
 	
+	CookingUnitConverter converter = new CookingUnitConverter();
+	
 	public ScheduledSubtractHandler() {
 		super();
 		//ADD TESTING SUBTRACTION TO LIST. REOMVE LATER
@@ -52,17 +54,24 @@ public class ScheduledSubtractHandler {
 			
 			//get info on each autosubtraction in the list
 			Food f = sub.getFood();
+			
+			String u = sub.getQuantityUnit();
+			
 			Pantry p = sub.getPantry();
+			
+			Double currentQuantity = f.getQuantity();
+			
 			double quantityToSubtract = sub.getQuantity();
-			double currentQuantity = f.getQuantity();
+			
+			double convertedSubtraction = converter.convert(quantityToSubtract, u, f.getQuantityUnit());
 			
 			//generate how much the new quantity should be
-			double newQuant = currentQuantity - quantityToSubtract;
+			double newQuant = currentQuantity - convertedSubtraction;
 			
 			//check if the new value would be less than 0 and if it would, set it to 0
 			if (newQuant <= 0) {
 				newQuant = 0;
-				System.out.println("You're out of " + f.getName() + "!");
+				//System.out.println("You're out of " + f.getName() + "!");
 			}
 			
 			
@@ -71,7 +80,7 @@ public class ScheduledSubtractHandler {
 			//save the updated value to the database
 			fRepo.save(f);
 			
-			System.out.println(quantityToSubtract + " " + f.getName() + "should have been subtracted.");
+			System.out.println("Subtracted " + sub.getQuantity() + " " + u + " of " + f.getName() + " for a new total of " + f.getQuantity() + " " + f.getQuantityUnit());
 		}
 	}
 	

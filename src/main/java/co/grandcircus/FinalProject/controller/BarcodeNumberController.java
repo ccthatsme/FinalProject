@@ -250,13 +250,7 @@ public class BarcodeNumberController {
 		Food f = food.get();
 		System.out.println("FOOD ID IS: " + foodId);
 		AutoSubtraction newsub = new AutoSubtraction(qtyNum, unit, 50000, p, f);
-		aRepo.saveAndFlush(newsub);
-		
-		p.getAutosubtraction().add(newsub);
-		pRepo.save(p);
-		
-		f.getAutosubtraction().add(newsub);
-		foodrepo.save(f);
+		aRepo.save(newsub);
 		
 		System.out.println(newsub);
 		
