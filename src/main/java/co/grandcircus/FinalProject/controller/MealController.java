@@ -1,6 +1,6 @@
 package co.grandcircus.FinalProject.controller;
 
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.FinalProject.jpaEntity.Food;
-import co.grandcircus.FinalProject.jpaEntity.Pantry;
 import co.grandcircus.FinalProject.repository.FoodRepository;
 import co.grandcircus.FinalProject.repository.PantryRepository;
 
@@ -18,6 +17,7 @@ import co.grandcircus.FinalProject.repository.PantryRepository;
 public class MealController {
 	
 	Food food;
+	Food foodTwo;
 	
 	@Autowired
 	PantryRepository pRepo;
@@ -34,8 +34,15 @@ public class MealController {
 	}
 	
 	@RequestMapping("edit-meal")
-	public ModelAndView addToMeal(@RequestParam("id") int id) {
+	public ModelAndView addToMeal(@RequestParam("id") int id, @RequestParam("check") boolean check) {
 		ModelAndView mv = new ModelAndView();
+		List<Food> caloriesList = new ArrayList<Food>();
+		if(check) {
+			foodTwo = fRepo.getOne(id);
+			caloriesList.add(foodTwo);
+		}
+		
+		
 		food = fRepo.getOne(id);
 		int calories = food.getCalories();
 		List<Food> list = fRepo.findAll();
@@ -44,7 +51,7 @@ public class MealController {
 			sum = food.getCalories() + sum;
 			
 		}
-		mv = new ModelAndView("page", "test", calories);
+		mv = new ModelAndView("page", "test", caloriesList);
 		return mv;
 	}
 	
