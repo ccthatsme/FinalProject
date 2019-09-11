@@ -18,8 +18,8 @@ Protein- ${response.nf_protein }<br>
 Brand Name- ${response.brand_name }<br>
 <form action="add-to-pantry">
 <input type="hidden" value="${barcode }" name="barcode">
-<input type="number" name="quantity">
-<input list="unitChoice" name="unitChoice"> <datalist
+<input type="number" name="quantity" required>
+<input list="unitChoice" name="unitChoice" required > <datalist
 							id="unitChoice">
 							<option value="cups">
 							<option value="tsp">
