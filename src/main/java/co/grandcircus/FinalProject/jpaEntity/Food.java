@@ -1,5 +1,6 @@
 package co.grandcircus.FinalProject.jpaEntity;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -7,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Food {
@@ -33,15 +35,20 @@ public class Food {
 	private Integer protein;
 	private Integer fat;
 	
+	@OneToMany(mappedBy="food") //, cascade=CascadeType.ALL, orphanRemoval=true
+	List<AutoSubtraction> autosubtraction;
+	
 	public Food() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Food(Set<Restriction> restriction, Set<Pantry> pantry, String name, Double quantity, String quantityUnit,
-			Integer calories, Integer sugar, Integer carbs, Integer protein, Integer fat) {
+	public Food(Set<Restriction> restriction, Set<Recipe> recipe, Set<Pantry> pantry, String name, Double quantity,
+			String quantityUnit, Integer calories, Integer sugar, Integer carbs, Integer protein, Integer fat,
+			List<AutoSubtraction> autosubtraction) {
 		super();
 		this.restriction = restriction;
+		this.recipe = recipe;
 		this.pantry = pantry;
 		this.name = name;
 		this.quantity = quantity;
@@ -51,13 +58,16 @@ public class Food {
 		this.carbs = carbs;
 		this.protein = protein;
 		this.fat = fat;
+		this.autosubtraction = autosubtraction;
 	}
 
-	public Food(Integer id, Set<Restriction> restriction, Set<Pantry> pantry, String name, Double quantity,
-			String quantityUnit, Integer calories, Integer sugar, Integer carbs, Integer protein, Integer fat) {
+	public Food(Integer id, Set<Restriction> restriction, Set<Recipe> recipe, Set<Pantry> pantry, String name,
+			Double quantity, String quantityUnit, Integer calories, Integer sugar, Integer carbs, Integer protein,
+			Integer fat, List<AutoSubtraction> autosubtraction) {
 		super();
 		this.id = id;
 		this.restriction = restriction;
+		this.recipe = recipe;
 		this.pantry = pantry;
 		this.name = name;
 		this.quantity = quantity;
@@ -67,6 +77,7 @@ public class Food {
 		this.carbs = carbs;
 		this.protein = protein;
 		this.fat = fat;
+		this.autosubtraction = autosubtraction;
 	}
 
 	public Integer getId() {
@@ -83,6 +94,14 @@ public class Food {
 
 	public void setRestriction(Set<Restriction> restriction) {
 		this.restriction = restriction;
+	}
+
+	public Set<Recipe> getRecipe() {
+		return recipe;
+	}
+
+	public void setRecipe(Set<Recipe> recipe) {
+		this.recipe = recipe;
 	}
 
 	public Set<Pantry> getPantry() {
@@ -157,12 +176,13 @@ public class Food {
 		this.fat = fat;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Food [id=" + id + ", restriction=" + restriction + ", pantry=" + pantry + ", name=" + name
-//				+ ", quantity=" + quantity + ", quantityUnit=" + quantityUnit + ", calories=" + calories + ", sugar="
-//				+ sugar + ", carbs=" + carbs + ", protein=" + protein + ", fat=" + fat + "]";
-//	}
-	
+	public List<AutoSubtraction> getAutosubtraction() {
+		return autosubtraction;
+	}
+
+	public void setAutosubtraction(List<AutoSubtraction> autosubtraction) {
+		this.autosubtraction = autosubtraction;
+	}
+
 	
 }

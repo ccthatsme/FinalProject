@@ -238,7 +238,11 @@ public class BarcodeNumberController {
 	
 	@RequestMapping("add-auto")
 	public ModelAndView addAuto(@RequestParam("qty") Double qtyNum, @RequestParam("unitChoice") String unit, @RequestParam("food") Integer foodId, @RequestParam("pantry") Integer pantryId) {
+		
+		//get the correct user so we can get their information
 		User u = (User) sess.getAttribute("user");
+		
+		//we get their pantry
 		Optional<Pantry> pantry = pRepo.findById(pantryId);
 		Pantry p = pantry.get();
 		System.out.println("PANTRY ID IS: " + pantryId);
@@ -246,8 +250,18 @@ public class BarcodeNumberController {
 		Food f = food.get();
 		System.out.println("FOOD ID IS: " + foodId);
 		AutoSubtraction newsub = new AutoSubtraction(qtyNum, unit, 50000, p, f);
-		aRepo.save(newsub);
+		aRepo.saveAndFlush(newsub);
+		
+		p.getAutosubtraction().add(newsub);
+		pRepo.save(p);
+		
+		f.getAutosubtraction().add(newsub);
+		foodrepo.save(f);
+		
+		System.out.println(newsub);
+		
 		return new ModelAndView("acct-page");
 	}
 
+	
 }
