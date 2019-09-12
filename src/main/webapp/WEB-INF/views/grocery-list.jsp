@@ -31,8 +31,9 @@
 		<h1>Your Grocery List</h1>
 
 		<c:forEach items="${groceries }" var="item">
-		${item }<br>
+		${item.name }<br>
 		</c:forEach>
+		<a href= "buy-all" class= "btn btn-primary">Buy All</a>
 	</div>
 
 

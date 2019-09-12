@@ -13,16 +13,23 @@ public class GroceryListGenerator {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public List<String> createGroceryList(Pantry p){
+	public List<Food> createGroceryList(Pantry p){
 		List<Food> foodInPantry = p.getPantryFood();
-		List<String> foodToBuy = new ArrayList<>();
+		List<Food> foodToBuy = new ArrayList<>();
 		
 		for(Food f : foodInPantry) {
 			if (f.getQuantity() < 2) {
-				foodToBuy.add(f.getName());
+				foodToBuy.add(f);
 			}
 		}
 		return foodToBuy;
+		
+	}
+	
+	public void buyAllFood (List<Food> fList, Pantry p){
+		for(Food f : fList ) {
+			f.setQuantity(f.getQuantity()+5);
+		}
 		
 	}
 	

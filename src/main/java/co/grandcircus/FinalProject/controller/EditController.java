@@ -125,7 +125,16 @@ public class EditController {
 	public ModelAndView showGroceryList() {
 		User u = (User) session.getAttribute("user");
 		Pantry p = u.getPantry();
-		List<String> toBuy = groceryListGenerator.createGroceryList(p);
+		List<Food> toBuy = groceryListGenerator.createGroceryList(p);
 		return new ModelAndView("grocery-list", "groceries", toBuy);
+	}
+	@RequestMapping("buy-all")
+	public ModelAndView buyAllGroceries() {
+		User u = (User) session.getAttribute("user");
+		Pantry p = u.getPantry();
+		List<Food> fList = groceryListGenerator.createGroceryList(p);
+		groceryListGenerator.buyAllFood(fList, p);
+		return new ModelAndView("user-pantry", "updatedPantry", u.getPantry());
+		
 	}
 }
