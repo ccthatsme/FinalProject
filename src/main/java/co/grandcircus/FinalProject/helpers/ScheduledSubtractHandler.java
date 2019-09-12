@@ -76,7 +76,7 @@ public class ScheduledSubtractHandler {
 			
 			
 			f.setQuantity(newQuant);
-			
+			System.out.println(f.getQuantity());
 			//save the updated value to the database
 			fRepo.save(f);
 			

@@ -28,41 +28,11 @@
 		
 		</form> -->
 
-		<h1>List of Pantry Items</h1>
+		<h1>Your Grocery List</h1>
 
-		<table class="table">
-			<tr>
-				
-				<th>ID</th>
-				<th>Name</th>
-				<th>Calories</th>
-				<th>Protein</th>
-				<th>Quantity</th>
-				<th>Quantity Unit</th>
-				<th>Add</th>
-				<th>Subtract</th>
-				<!-- <th>Delete</th> -->
-				
-			</tr>
-			<c:forEach var="a" items="${user.pantry.pantryFood}">
-		<tr>
-			<td>${a.id}</td>
-			<td>${a.name}</td>
-			<td>${a.calories}</td>
-			<td>${a.protein}</td>
-			<td>${a.quantity}</td>
-			<td>${a.quantityUnit}</td>
-			<td><a class="btn btn-secondary" href="go-to-add-page?id=${a.id}"> add</a></td>
-			<td><a class="btn btn-secondary" href="go-to-subtract-page?id=${a.id}"> subtract</a></td>
-			<%-- <td><a class="btn btn-secondary" href="delete?id=${a.id}"> delete</a></td> --%>
-			
-		</tr>
+		<c:forEach items="${groceries }" var="item">
+		${item }<br>
 		</c:forEach>
-		</table>
-		<!-- NEW STUFF STARTS HERE -->
-		
-		<a href="grocery-list" class="btn btn-primary">Create Grocery list</a>
-		
 	</div>
 
 
