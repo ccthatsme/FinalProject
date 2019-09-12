@@ -5,9 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.FinalProject.jpaEntity.Food;
@@ -16,10 +22,15 @@ import co.grandcircus.FinalProject.repository.PantryRepository;
 
 @Controller
 public class MealController {
+	
+	RestTemplate rt = new RestTemplate();
 
 	Food food;
 	Food foodTwo;
 
+	@Value("${spoonacular-recipe.key}")
+	private String key;
+	
 	@Autowired
 	PantryRepository pRepo;
 
@@ -61,19 +72,44 @@ public class MealController {
 	public ModelAndView addToMeal(@RequestParam("check") String check) {
 		System.out.println(check);
 		String[] ingredients = check.split(",");
-
+		String foodString = "";
 		for (int i = 0; i < ingredients.length; i++) {
 			if (i == 0) {
-				System.out.print(ingredients[i]);
+				foodString = ingredients[i] + foodString;
+				//System.out.print(ingredients[i]);
 			} else if (i != 0) {
-				System.out.print(",+");
-				System.out.print(ingredients[i]);
+				foodString = ",+" + ingredients[i] + ",+" + foodString;
+//				System.out.print(",+");
+//				System.out.print(ingredients[i]);
 			}
+		}
+			System.out.println(foodString);
+			//apples,+flour,+sugar
+			String url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + foodString + "&number=2&apiKey=" + key;
+			HttpHeaders headers = new HttpHeaders();		
+			headers.add("Content-Type", "application/json");
+//			headers.add(, headerValue);
+
+		
+			HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+			ResponseEntity<String> response = rt.exchange(url, HttpMethod.GET, entity, String.class);
+//			//this came from the URL
+//			//apples,+flour,+sugar&number=2&apiKey=
+//			String url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients="  + key;
+//			HttpHeaders headers = new HttpHeaders();		
+//			headers.add("Content-Type", "application/json");
+////			headers.add(, headerValue);
+//
+//		
+//			HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
+//			ResponseEntity<String> response = rt.exchange(url, HttpMethod.GET, entity, String.class);
+//			System.out.println(response.getBody());
+			
 			/*
 			 * // } else if (i== ingredients.length-1) { // System.out.print(",+"); //
 			 * System.out.print(ingredients[i]); // }
-			 */ }
-		ModelAndView mv = new ModelAndView("page");
+			 */ 
+		ModelAndView mv = new ModelAndView("page", "test", response.getBody());
 //		List<Food> caloriesList = new ArrayList<Food>();
 //		if(check) {
 //			foodTwo = fRepo.getOne(id);
@@ -92,5 +128,7 @@ public class MealController {
 		// mv = new ModelAndView("page", "test", caloriesList);
 		return mv;
 	}
+	
+	
 
 }
