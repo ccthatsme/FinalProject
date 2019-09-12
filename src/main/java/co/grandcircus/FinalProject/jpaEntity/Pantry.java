@@ -2,6 +2,7 @@ package co.grandcircus.FinalProject.jpaEntity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -23,7 +24,7 @@ public class Pantry {
 	@OneToOne(mappedBy = "pantry")
     private User user;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(
 	  name = "pantry_food", 
 	  joinColumns = @JoinColumn(name = "pantry_id"), 
