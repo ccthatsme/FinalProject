@@ -9,10 +9,10 @@
 <title>Create a Meal</title>
 </head>
 <body>
-
+<div class="container">
 <h1>What are you eating today?</h1>
-<form action="edit-meal?id=${a.id}">
-<table class="container">
+<form action="edit-meal">
+<table class="table">
 			<tr>
 				
 				<th>ID</th>
@@ -34,15 +34,16 @@
 			<td>${a.protein}</td>
 			<td>${a.quantity}</td>
 			<td>${a.quantityUnit}</td>
-			<td><input type="checkbox" name="check" > Check to Add<br></td>
-			<td><a class="btn btn-secondary" href="edit-meal?id=${a.id}">Add</a></td>
+			<td><input type="checkbox" name="check" value="${a.name }"> Check to Add<br></td>
+			<%-- <td><a class="btn btn-secondary" href="edit-meal?id=${a.id}">Add</a></td> --%>
 			
 		</tr>
 		</c:forEach>
-		<input type="submit" name="Add All" href="edit-meal?id=${a.id}">
 		</table>
+		<input type="submit" name="Add All">
+		</form>
 	</div>
-	</form>
+	
 
 
 </body>
