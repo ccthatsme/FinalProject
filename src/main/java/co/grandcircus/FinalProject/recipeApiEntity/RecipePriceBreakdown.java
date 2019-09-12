@@ -1,9 +1,6 @@
 package co.grandcircus.FinalProject.recipeApiEntity;
 
 import java.util.ArrayList;
-
-import javax.persistence.Entity;
-@Entity
 public class RecipePriceBreakdown {
 
 	ArrayList<Ingredients> ingredients;

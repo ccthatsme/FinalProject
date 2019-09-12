@@ -1,8 +1,5 @@
 package co.grandcircus.FinalProject.recipeApiEntity;
 
-import javax.persistence.Entity;
-
-@Entity
 public class Ingredients {
 
 	private Double totalCost;

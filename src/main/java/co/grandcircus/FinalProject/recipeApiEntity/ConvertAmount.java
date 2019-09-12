@@ -1,9 +1,5 @@
 package co.grandcircus.FinalProject.recipeApiEntity;
 
-import javax.persistence.Entity;
-
-@Entity
-
 public class ConvertAmount {
 
 	private Double sourceAmount;
