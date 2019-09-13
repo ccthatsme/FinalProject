@@ -117,7 +117,7 @@ public class EditController {
 
 		User u = (User) session.getAttribute("user");
 
-		return new ModelAndView("user-pantry", "updatedPantry", u.getPantry());
+		return new ModelAndView("redirect:/login?email=" +u.getEmail()+"&password="+ u.getPassword());
 	}
 
 	
