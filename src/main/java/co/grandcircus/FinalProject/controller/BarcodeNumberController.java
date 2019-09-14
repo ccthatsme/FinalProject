@@ -141,7 +141,6 @@ public class BarcodeNumberController {
 	}
 
 	@RequestMapping("add-to-pantry")
-
 	public ModelAndView addItem(@RequestParam("barcode") String barcode, @RequestParam("quantity") Double quantity,
 			@RequestParam("unitChoice") String unit) {
 		String url = "https://trackapi.nutritionix.com/v2/search/item?upc=" + barcode;

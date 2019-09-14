@@ -1,8 +1,9 @@
 
 package co.grandcircus.FinalProject.controller;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.FinalProject.jpaEntity.Food;
+import co.grandcircus.FinalProject.jpaEntity.PossibleRecipe;
 import co.grandcircus.FinalProject.repository.FoodRepository;
 import co.grandcircus.FinalProject.repository.PantryRepository;
 
@@ -27,7 +29,7 @@ public class MealController {
 
 	Food food;
 	Food foodTwo;
-
+	PossibleRecipe pr;
 	@Value("${spoonacular-recipe.key}")
 	private String key;
 	
@@ -36,6 +38,9 @@ public class MealController {
 
 	@Autowired
 	FoodRepository fRepo;
+	
+	@Autowired
+	HttpSession sess;
 
 	@RequestMapping("meal-page")
 	public ModelAndView mealHome() {
@@ -83,16 +88,17 @@ public class MealController {
 //				System.out.print(ingredients[i]);
 			}
 		}
+		
 			System.out.println(foodString);
 			//apples,+flour,+sugar
-			String url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + foodString + "&number=2&apiKey=" + key;
+			String url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + foodString + "&number=100&apiKey=" + key;
 			HttpHeaders headers = new HttpHeaders();		
 			headers.add("Content-Type", "application/json");
 //			headers.add(, headerValue);
 
 		
 			HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-			ResponseEntity<String> response = rt.exchange(url, HttpMethod.GET, entity, String.class);
+			ResponseEntity<List> response = rt.exchange(url, HttpMethod.GET, entity, List.class);
 //			//this came from the URL
 //			//apples,+flour,+sugar&number=2&apiKey=
 //			String url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients="  + key;
@@ -109,7 +115,7 @@ public class MealController {
 			 * // } else if (i== ingredients.length-1) { // System.out.print(",+"); //
 			 * System.out.print(ingredients[i]); // }
 			 */ 
-		ModelAndView mv = new ModelAndView("page", "test", response.getBody());
+		ModelAndView mv = new ModelAndView("recipe-page", "test", response.getBody());
 //		List<Food> caloriesList = new ArrayList<Food>();
 //		if(check) {
 //			foodTwo = fRepo.getOne(id);
@@ -128,7 +134,12 @@ public class MealController {
 		// mv = new ModelAndView("page", "test", caloriesList);
 		return mv;
 	}
-	
-	
 
-}
+//	@RequestMapping("complete-recipe")
+//	public ModelAndView recipeData() {
+//		return null;
+//		
+	
+	
+	}
+
