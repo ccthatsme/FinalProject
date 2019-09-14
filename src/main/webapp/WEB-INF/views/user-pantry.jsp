@@ -35,7 +35,7 @@
 
 		<h1>List of Pantry Items</h1>
 
-		<table class="table">
+		<table class="table" style="width:100%">
 			<tr>
 
 				<th>ID</th>
