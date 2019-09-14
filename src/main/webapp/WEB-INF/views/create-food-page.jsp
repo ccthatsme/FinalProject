@@ -42,7 +42,7 @@
 		<h3>Add with quantity</h3>
 		<form action="create-custom-food">
 		<input type="text" name="name" placeholder="name">
-			<input type="number" placeholder="1.0" step="0.01" min="0" name="qty"
+			<input type="number" placeholder="1.0" step="0.01" min="0" name="quantity"
 				required> <input list="unitChoice" name="quantityUnit"
 				required>
 			<datalist id="unitChoice">

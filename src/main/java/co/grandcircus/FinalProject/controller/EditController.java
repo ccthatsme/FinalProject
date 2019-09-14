@@ -1,6 +1,7 @@
 package co.grandcircus.FinalProject.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
 
@@ -136,5 +137,19 @@ public class EditController {
 		groceryListGenerator.buyAllFood(fList, p);
 		return new ModelAndView("user-pantry", "updatedPantry", u.getPantry());
 		
+	}
+	
+	@RequestMapping("change-unit")
+	public ModelAndView changeUnit(@RequestParam("id") Integer id, @RequestParam("unitChoice") String unitChoice) {
+		User u = (User) session.getAttribute("user");
+		Pantry p = u.getPantry();
+		Optional<Food> food = foodRepo.findById(id);
+		Food f = food.get();
+		
+		double newAmt = converter.convert(f.getQuantity(), f.getQuantityUnit(), unitChoice);
+		f.setQuantity(newAmt);
+		f.setQuantityUnit(unitChoice);
+		foodRepo.save(f);
+		return new ModelAndView("redirect:/login?email=" +u.getEmail()+"&password="+ u.getPassword());
 	}
 }
