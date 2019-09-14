@@ -3,14 +3,15 @@ package co.grandcircus.FinalProject.jpaEntity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class usedIngredients {
 	
-	private Integer id;
 	private Integer amount;
 	private String unit;
 	private String unitShort;
@@ -24,11 +25,10 @@ public class usedIngredients {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public usedIngredients(Integer id, Integer amount, String unit, String unitShort, String aisle, String name,
+	public usedIngredients(Integer amount, String unit, String unitShort, String aisle, String name,
 			String original, String originalString, String originalName,
 			List<co.grandcircus.FinalProject.jpaEntity.metaInformation> metaInformation) {
 		super();
-		this.id = id;
 		this.amount = amount;
 		this.unit = unit;
 		this.unitShort = unitShort;
@@ -39,12 +39,7 @@ public class usedIngredients {
 		this.originalName = originalName;
 		this.metaInformation = metaInformation;
 	}
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	
 	public Integer getAmount() {
 		return amount;
 	}
@@ -101,7 +96,7 @@ public class usedIngredients {
 	}
 	@Override
 	public String toString() {
-		return "usedIngredients [id=" + id + ", amount=" + amount + ", unit=" + unit + ", unitShort=" + unitShort
+		return "usedIngredients [amount=" + amount + ", unit=" + unit + ", unitShort=" + unitShort
 				+ ", aisle=" + aisle + ", name=" + name + ", original=" + original + ", originalString="
 				+ originalString + ", originalName=" + originalName + ", metaInformation=" + metaInformation + "]";
 	}

@@ -29,5 +29,4 @@
 			</div>
 		</nav>
 	</div>
-	<div id="page-body">Insert interesting placeholder text here</div>
 </div>

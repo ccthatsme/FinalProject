@@ -3,14 +3,15 @@ package co.grandcircus.FinalProject.jpaEntity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PossibleRecipe {
 	
-	private Integer id;
 	private String title;
 	private String image;
 	private Integer usedIngredientCount;
@@ -23,26 +24,17 @@ public class PossibleRecipe {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PossibleRecipe(Integer id, String title, String image, Integer usedIngredientCount,
+	public PossibleRecipe(String title, String image, Integer usedIngredientCount,
 			Integer missedIngredientCount,
 			List<co.grandcircus.FinalProject.jpaEntity.missedIngredients> missedIngredients,
 			List<co.grandcircus.FinalProject.jpaEntity.usedIngredients> usedIngredients) {
 		super();
-		this.id = id;
 		this.title = title;
 		this.image = image;
 		this.usedIngredientCount = usedIngredientCount;
 		this.missedIngredientCount = missedIngredientCount;
 		this.missedIngredients = missedIngredients;
 		this.usedIngredients = usedIngredients;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getTitle() {
@@ -95,7 +87,7 @@ public class PossibleRecipe {
 
 	@Override
 	public String toString() {
-		return "PossibleRecipe [id=" + id + ", title=" + title + ", image=" + image + ", usedIngredientCount="
+		return "PossibleRecipe [title=" + title + ", image=" + image + ", usedIngredientCount="
 				+ usedIngredientCount + ", missedIngredientCount=" + missedIngredientCount + ", missedIngredients="
 				+ missedIngredients + ", usedIngredients=" + usedIngredients + "]";
 	} 
