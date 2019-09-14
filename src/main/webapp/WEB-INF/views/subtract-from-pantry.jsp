@@ -27,7 +27,7 @@ Current Amount: ${food.quantity } ${food.quantityUnit }
 							<option value="oz">
 						</datalist>
 					<input type="submit" class="btn btn-primary"
-						value="subtract-amt">
+						value="Subtract">
 
 </form>
 </body>

@@ -40,8 +40,58 @@ public class Food {
 	
 	public Food() {
 		super();
-		// TODO Auto-generated constructor stub
+		this.name = name;
+		this.quantity = 0.0;
+		this.quantityUnit = "oz";
+		this.calories = 0;
+		this.sugar = 0;
+		this.carbs = 0;
+		this.protein = 0;
+		this.fat = 0;
 	}
+
+	public Food(String name) {
+		super();
+		this.name = name;
+		this.quantity = 0.0;
+		this.quantityUnit = "oz";
+		this.calories = 0;
+		this.sugar = 0;
+		this.carbs = 0;
+		this.protein = 0;
+		this.fat = 0;
+	}
+
+
+
+	public Food(String name, Double quantity, String quantityUnit) {
+		super();
+		this.name = name;
+		this.quantity = quantity;
+		this.quantityUnit = quantityUnit;
+		this.calories = 0;
+		this.sugar = 0;
+		this.carbs = 0;
+		this.protein = 0;
+		this.fat = 0;
+	}
+
+
+
+	public Food(String name, Double quantity, String quantityUnit, Integer calories, Integer sugar, Integer carbs,
+			Integer protein, Integer fat) {
+		super();
+		this.name = name;
+		this.quantity = quantity;
+		this.quantityUnit = quantityUnit;
+		this.calories = calories;
+		this.sugar = sugar;
+		this.carbs = carbs;
+		this.protein = protein;
+		this.fat = fat;
+	}
+
+
 
 	public Food(Set<Restriction> restriction, Set<Recipe> recipe, Set<Pantry> pantry, String name, Double quantity,
 			String quantityUnit, Integer calories, Integer sugar, Integer carbs, Integer protein, Integer fat,

@@ -60,6 +60,7 @@
 		</c:forEach>
 		</table>
 		<!-- NEW STUFF STARTS HERE -->
+		<a href="create-custom-food-page" class="btn btn-primary">Create custom food</a>
 		
 		<a href="grocery-list" class="btn btn-primary">Create Grocery list</a>
 		
