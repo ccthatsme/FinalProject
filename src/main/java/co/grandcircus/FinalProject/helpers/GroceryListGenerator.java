@@ -3,11 +3,19 @@ package co.grandcircus.FinalProject.helpers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import co.grandcircus.FinalProject.jpaEntity.Food;
 import co.grandcircus.FinalProject.jpaEntity.Pantry;
+import co.grandcircus.FinalProject.repository.FoodRepository;
 
 public class GroceryListGenerator {
 
+	CookingUnitConverter converter = new CookingUnitConverter();
+	
+	@Autowired
+	FoodRepository fRepo;
+	
 	public GroceryListGenerator() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -28,7 +36,10 @@ public class GroceryListGenerator {
 
 	public void buyAllFood(List<Food> fList, Pantry p) {
 		for (Food f : fList) {
-			f.setQuantity(f.getQuantity() + 5);
+			
+			Double amtToAdd = converter.convert(f.getPurchaseQuantity(), f.getPurchaseUnit(), f.getQuantityUnit());
+			f.setQuantity(f.getQuantity() + amtToAdd);
+			fRepo.save(f);
 		}
 	}
 

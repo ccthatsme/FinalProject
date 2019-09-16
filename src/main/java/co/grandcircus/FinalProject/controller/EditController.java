@@ -27,10 +27,10 @@ public class EditController {
 
 	@Autowired
 	HttpSession session;
-	
+
 	@Autowired
 	PantryRepository pRepo;
-	
+
 	GroceryListGenerator groceryListGenerator = new GroceryListGenerator();
 
 	CookingUnitConverter converter = new CookingUnitConverter();
@@ -54,20 +54,20 @@ public class EditController {
 
 	@RequestMapping("delete")
 	public ModelAndView delete(@RequestParam("id") int id) {
-		//foodRepo.deleteById(id);
-		
+		// foodRepo.deleteById(id);
+
 		User u = (User) session.getAttribute("user");
 
 		Pantry pantry = u.getPantry();
 		List<Food> foodList = pantry.getPantryFood();
-		
+
 		if (foodList.contains(foodRepo.findById(id).orElse(null))) {
 			foodList.remove(id);
 			pantry.setPantryFood(foodList);
 		}
 		pRepo.saveAndFlush(pantry);
-		
-		return new ModelAndView("redirect:/login?email=" +u.getEmail()+"&password="+ u.getPassword());
+
+		return new ModelAndView("redirect:/login?email=" + u.getEmail() + "&password=" + u.getPassword());
 	}
 
 	@RequestMapping("go-to-add-page")
@@ -94,7 +94,7 @@ public class EditController {
 		System.out.println(u.getEmail());
 
 //		return new ModelAndView("user-pantry", "a", u);
-		return new ModelAndView("redirect:/login?email=" +u.getEmail()+"&password="+ u.getPassword());
+		return new ModelAndView("redirect:/login?email=" + u.getEmail() + "&password=" + u.getPassword());
 	}
 
 	@RequestMapping("go-to-subtract-page")
@@ -119,10 +119,9 @@ public class EditController {
 
 		User u = (User) session.getAttribute("user");
 
-		return new ModelAndView("redirect:/login?email=" +u.getEmail()+"&password="+ u.getPassword());
+		return new ModelAndView("redirect:/login?email=" + u.getEmail() + "&password=" + u.getPassword());
 	}
 
-	
 	@RequestMapping("grocery-list")
 	public ModelAndView showGroceryList() {
 		User u = (User) session.getAttribute("user");
@@ -130,45 +129,77 @@ public class EditController {
 		List<Food> toBuy = groceryListGenerator.createGroceryList(p);
 		return new ModelAndView("grocery-list", "groceries", toBuy);
 	}
+
 	@RequestMapping("buy-all")
 	public ModelAndView buyAllGroceries() {
 		User u = (User) session.getAttribute("user");
 		Pantry p = u.getPantry();
 		List<Food> fList = groceryListGenerator.createGroceryList(p);
-		groceryListGenerator.buyAllFood(fList, p);
+		for (Food f : fList) {
+
+			Double amtToAdd = converter.convert(f.getPurchaseQuantity(), f.getPurchaseUnit(), f.getQuantityUnit());
+			f.setQuantity(f.getQuantity() + amtToAdd);
+			foodRepo.save(f);
+		}
 		return new ModelAndView("user-pantry", "updatedPantry", u.getPantry());
-		
+
 	}
-	
+
 	@RequestMapping("buy-selected")
 	public ModelAndView buySelectedGroceries(@RequestParam("check") String checked) {
 		User u = (User) session.getAttribute("user");
 		Pantry p = u.getPantry();
 		List<Food> groceryList = groceryListGenerator.createGroceryList(p);
-		String [] selectedFoodNames = checked.split(",");
+		String[] selectedFoodNames = checked.split(",");
 		System.out.println(Arrays.toString(selectedFoodNames));
 		for (Food grocery : groceryList) {
 			for (String selectedName : selectedFoodNames) {
+
 				if (grocery.getName().equalsIgnoreCase(selectedName)) {
-					grocery.setQuantity(grocery.getQuantity() + 5);
+
+					// In case the stored quantity and purchase quantity are different, this will
+					// convert the amount to auto-purchase
+					// to the current unit of the food
+					Double amtToAdd = converter.convert(grocery.getPurchaseQuantity(), grocery.getPurchaseUnit(),
+							grocery.getQuantityUnit());
+					grocery.setQuantity(grocery.getQuantity() + amtToAdd);
+
 					foodRepo.save(grocery);
 				}
 			}
 		}
 		return new ModelAndView("user-pantry", "updatedPantry", u.getPantry());
 	}
-	
+
 	@RequestMapping("change-unit")
 	public ModelAndView changeUnit(@RequestParam("id") Integer id, @RequestParam("unitChoice") String unitChoice) {
 		User u = (User) session.getAttribute("user");
 		Pantry p = u.getPantry();
 		Optional<Food> food = foodRepo.findById(id);
 		Food f = food.get();
-		
+
 		double newAmt = converter.convert(f.getQuantity(), f.getQuantityUnit(), unitChoice);
 		f.setQuantity(newAmt);
 		f.setQuantityUnit(unitChoice);
 		foodRepo.save(f);
-		return new ModelAndView("redirect:/login?email=" +u.getEmail()+"&password="+ u.getPassword());
+		return new ModelAndView("redirect:/login?email=" + u.getEmail() + "&password=" + u.getPassword());
+	}
+
+	@RequestMapping("manage-grocery-settings")
+	public ModelAndView goToGrocerySettingPage() {
+		return new ModelAndView("grocery-manager");
+	}
+
+	@RequestMapping("change-grocery-setting")
+	public ModelAndView changeGrocerySetting(@RequestParam("food") Integer foodId, @RequestParam("qty") Double quantity,
+			@RequestParam("unitChoice") String unitChoice) {
+		User u = (User) session.getAttribute("user");
+		Pantry p = u.getPantry();
+		Food f = foodRepo.findById(foodId).get();
+		f.setPurchaseQuantity(quantity);
+		f.setPurchaseUnit(unitChoice);
+		foodRepo.save(f);
+		return new ModelAndView("redirect:/login?email=" + u.getEmail() + "&password=" + u.getPassword());
+
 	}
 }
