@@ -60,7 +60,7 @@ public class BarcodeNumberController {
 
 	@Autowired
 	HttpSession sess;
-	
+
 	CookingUnitConverter foodConverter = new CookingUnitConverter();
 
 //	@Autowired
@@ -161,22 +161,23 @@ public class BarcodeNumberController {
 		f.setQuantityUnit(unit);
 
 		User u = (User) sess.getAttribute("user");
-
+		Pantry pantry = u.getPantry();
 		// if the food exists, we dont want to add a duplicate entry to the database, we
 		// just want to add it to the user pantry
-		if (checkIfFoodExists(f)) {
-			Food food = foodrepo.findByName(f.getName()).get(0);
-			//THIS IS LITERALLY JUST STOLEN FROM EDITCONTROLLER
+		if (checkIfFoodInPantry(f, pantry) != null) {
+			Food food =  checkIfFoodInPantry(f, pantry);
+			// THIS IS LITERALLY JUST STOLEN FROM EDITCONTROLLER
 			Double convertedSubtraction = foodConverter.convert(quantity, unit, food.getQuantityUnit());
 
 			Double newAmt = food.getQuantity() + convertedSubtraction;
 
 			food.setQuantity(newAmt);
 			foodrepo.save(food);
+
 //			return new ModelAndView("user-pantry", "a", u);
-			return new ModelAndView("redirect:/login?email=" +u.getEmail()+"&password="+ u.getPassword());
+			return new ModelAndView("redirect:/login?email=" + u.getEmail() + "&password=" + u.getPassword());
 		} else {
-			Pantry pantry = u.getPantry();
+
 			pantry.getPantryFood().add(f);
 			foodrepo.save(f);
 			pRepo.save(pantry);
@@ -185,18 +186,21 @@ public class BarcodeNumberController {
 		System.out.println(u);
 		Pantry userPantry = u.getPantry();
 		List<Food> userItems = userPantry.getPantryFood();
-		return new ModelAndView("redirect:/login?email=" +u.getEmail()+"&password="+ u.getPassword());
+		return new ModelAndView("redirect:/login?email=" + u.getEmail() + "&password=" + u.getPassword());
 	}
 
 	// this method should be updated later. right now it checks if a food with the
 	// same name exists, but we should make it check by upc or some other unique
 	// identifier. returns false if food does not exist, and true if it does
-	public boolean checkIfFoodExists(Food f) {
-		List<Food> returnedFoods = foodrepo.findByName(f.getName());
-		if (returnedFoods.size() == 0) {
-			return false;
+	public Food checkIfFoodInPantry(Food f, Pantry p) {
+		List<Food> returnedFoods = p.getPantryFood();
+		for (Food food : returnedFoods) {
+			if (food.getName().equalsIgnoreCase(f.getName())) {
+				return food;
+			}
 		}
-		return true;
+
+		return null;
 	}
 //	@RequestMapping("user-pantry")
 //	public ModelAndView userPantryItems() {
