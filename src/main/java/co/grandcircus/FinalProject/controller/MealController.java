@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.FinalProject.jpaEntity.Food;
 import co.grandcircus.FinalProject.jpaEntity.PossibleRecipe;
+import co.grandcircus.FinalProject.jpaEntity.User;
 import co.grandcircus.FinalProject.repository.FoodRepository;
 import co.grandcircus.FinalProject.repository.PantryRepository;
 
@@ -44,8 +45,9 @@ public class MealController {
 
 	@RequestMapping("meal-page")
 	public ModelAndView mealHome() {
-		List<Food> list = fRepo.findAll();
-
+		User user = (User) sess.getAttribute("user");
+		List<Food> list = user.getPantry().getPantryFood();
+		
 		return new ModelAndView("meal", "list", list);
 
 	}
