@@ -76,7 +76,7 @@ public class MealController {
 //	
 
 	@RequestMapping("edit-meal")
-	public ModelAndView addToMeal(@RequestParam("check") String check) {
+	public ModelAndView addToMeal(@RequestParam("check") String check, @RequestParam("items") int num) {
 		System.out.println(check);
 		String[] ingredients = check.split(",");
 		String foodString = "";
@@ -93,7 +93,7 @@ public class MealController {
 		
 			System.out.println(foodString);
 			//apples,+flour,+sugar
-			String url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + foodString + "&number=100&apiKey=" + key;
+			String url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + foodString + "&number=" + num + "&apiKey=" + key;
 			HttpHeaders headers = new HttpHeaders();		
 			headers.add("Content-Type", "application/json");
 //			headers.add(, headerValue);

@@ -21,7 +21,7 @@
     <th>Name</th>
     <th>Image</th>
     <th>List of Missing Ingredients</th>
-    <th>List of Used Ingredients</th>
+   <!-- <th>List of Used Ingredients</th> -->
   </tr>
   <c:forEach var="r" items="${test}">
   <tr>
@@ -34,9 +34,9 @@
     </c:forEach>
     
     </td>
-    <td><c:forEach var="u" items="${r.userIngredients}">
+   <!-- <td><c:forEach var="u" items="${r.userIngredients}">
     ${u.name }<br>
-    </c:forEach></td>
+    </c:forEach></td> -->
   </tr>
   </c:forEach>
 </table>
