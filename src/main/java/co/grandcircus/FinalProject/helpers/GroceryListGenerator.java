@@ -30,7 +30,20 @@ public class GroceryListGenerator {
 		for(Food f : fList ) {
 			f.setQuantity(f.getQuantity()+5);
 		}
-		
 	}
-	
-}
+	public void buySelected (List<Food> fList, List<Food> selectedList, Pantry p){
+			ArrayList<Food> food = new ArrayList<>();
+		for(Food f : selectedList) {
+			
+				for (Food select : fList) {
+					if(select.getName().equalsIgnoreCase(f.getName())) {
+						food.add(select);
+					}
+				}
+				for(Food selectFood : food) {
+					selectFood.setQuantity(selectFood.getQuantity()+5);
+				}
+				
+	}
+		
+}}

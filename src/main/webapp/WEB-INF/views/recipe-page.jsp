@@ -25,7 +25,7 @@
   </tr>
   <c:forEach var="r" items="${test}">
   <tr>
-    <td><a class="btn btn-secondary" href="complete-recipe?id=${r.id}">${r.id}</a></td>
+    <td><a class="btn btn-secondary" href="${r.spoonacularSourceUrl }">${r.id}</a></td>
     <td>${r.title}</td>
     <td><img src="${r.image }"></td>
     <td>

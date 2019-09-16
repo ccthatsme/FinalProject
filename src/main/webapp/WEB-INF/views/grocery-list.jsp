@@ -32,8 +32,10 @@
 
 		<c:forEach items="${groceries }" var="item">
 		${item.name }<br>
+		<td><input type="checkbox" name="check" value="${item.name }"> Check to Add<br></td>
 		</c:forEach>
 		<a href= "buy-all" class= "btn btn-primary">Buy All</a>
+		<a href= "buy-selected" class= "btn btn-primary">Buy Selected</a>
 	</div>
 
 
