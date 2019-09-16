@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.grandcircus.FinalProject.entity.jsonEntity.Product;
 import co.grandcircus.FinalProject.entity.jsonEntity.ProductResponse;
+import co.grandcircus.FinalProject.helpers.CookingUnitConverter;
 import co.grandcircus.FinalProject.helpers.ProductConverter;
 import co.grandcircus.FinalProject.jpaEntity.AutoSubtraction;
 import co.grandcircus.FinalProject.jpaEntity.Food;
@@ -59,6 +60,8 @@ public class BarcodeNumberController {
 
 	@Autowired
 	HttpSession sess;
+	
+	CookingUnitConverter foodConverter = new CookingUnitConverter();
 
 //	@Autowired
 //	ScheduledSubtractHandler schedule;
@@ -141,7 +144,6 @@ public class BarcodeNumberController {
 	}
 
 	@RequestMapping("add-to-pantry")
-
 	public ModelAndView addItem(@RequestParam("barcode") String barcode, @RequestParam("quantity") Double quantity,
 			@RequestParam("unitChoice") String unit) {
 		String url = "https://trackapi.nutritionix.com/v2/search/item?upc=" + barcode;
@@ -163,10 +165,16 @@ public class BarcodeNumberController {
 		// if the food exists, we dont want to add a duplicate entry to the database, we
 		// just want to add it to the user pantry
 		if (checkIfFoodExists(f)) {
-			Pantry pantry = u.getPantry();
-			pantry.getPantryFood().add(foodrepo.findByName(f.getName()).get(0));
-			foodrepo.save(f);
-			pRepo.save(pantry);
+			Food food = foodrepo.findByName(f.getName()).get(0);
+			//THIS IS LITERALLY JUST STOLEN FROM EDITCONTROLLER
+			Double convertedSubtraction = foodConverter.convert(quantity, unit, food.getQuantityUnit());
+
+			Double newAmt = food.getQuantity() + convertedSubtraction;
+
+			food.setQuantity(newAmt);
+			foodrepo.save(food);
+//			return new ModelAndView("user-pantry", "a", u);
+			return new ModelAndView("redirect:/login?email=" +u.getEmail()+"&password="+ u.getPassword());
 		} else {
 			Pantry pantry = u.getPantry();
 			pantry.getPantryFood().add(f);
@@ -182,7 +190,7 @@ public class BarcodeNumberController {
 
 	// this method should be updated later. right now it checks if a food with the
 	// same name exists, but we should make it check by upc or some other unique
-	// identifier.
+	// identifier. returns false if food does not exist, and true if it does
 	public boolean checkIfFoodExists(Food f) {
 		List<Food> returnedFoods = foodrepo.findByName(f.getName());
 		if (returnedFoods.size() == 0) {
