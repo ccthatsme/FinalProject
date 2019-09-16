@@ -157,6 +157,7 @@ public class BarcodeNumberController {
 		Product p = response.getBody().getFoods().get(0);
 
 		Food f = convert.convertFood(p);
+		f.setName(f.getName().replace(',', ':'));
 		f.setQuantity(quantity);
 		f.setQuantityUnit(unit);
 

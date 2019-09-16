@@ -34,6 +34,8 @@ public class Food {
 	private Integer carbs;
 	private Integer protein;
 	private Integer fat;
+	private Double purchaseQuantity;
+	private String purchaseUnit;
 	
 	@OneToMany(mappedBy="food") //, cascade=CascadeType.ALL, orphanRemoval=true
 	List<AutoSubtraction> autosubtraction;
@@ -48,6 +50,8 @@ public class Food {
 		this.carbs = 0;
 		this.protein = 0;
 		this.fat = 0;
+		this.purchaseQuantity = 0.0;
+		this.purchaseUnit = "oz";
 	}
 
 	public Food(String name) {
@@ -60,6 +64,8 @@ public class Food {
 		this.carbs = 0;
 		this.protein = 0;
 		this.fat = 0;
+		this.purchaseQuantity = 5.0;
+		this.purchaseUnit = "oz";
 	}
 
 
@@ -74,6 +80,8 @@ public class Food {
 		this.carbs = 0;
 		this.protein = 0;
 		this.fat = 0;
+		this.purchaseQuantity = 0.0;
+		this.purchaseUnit = "oz";
 	}
 
 
@@ -89,6 +97,8 @@ public class Food {
 		this.carbs = carbs;
 		this.protein = protein;
 		this.fat = fat;
+		this.purchaseQuantity = 0.0;
+		this.purchaseUnit = "oz";
 	}
 
 
@@ -109,6 +119,8 @@ public class Food {
 		this.protein = protein;
 		this.fat = fat;
 		this.autosubtraction = autosubtraction;
+		this.purchaseQuantity = 0.0;
+		this.purchaseUnit = "oz";
 	}
 
 	public Food(Integer id, Set<Restriction> restriction, Set<Recipe> recipe, Set<Pantry> pantry, String name,
@@ -128,6 +140,8 @@ public class Food {
 		this.protein = protein;
 		this.fat = fat;
 		this.autosubtraction = autosubtraction;
+		this.purchaseQuantity = 0.0;
+		this.purchaseUnit = "oz";
 	}
 
 	public Integer getId() {
@@ -232,6 +246,22 @@ public class Food {
 
 	public void setAutosubtraction(List<AutoSubtraction> autosubtraction) {
 		this.autosubtraction = autosubtraction;
+	}
+
+	public Double getPurchaseQuantity() {
+		return purchaseQuantity;
+	}
+
+	public void setPurchaseQuantity(Double purchaseQuantity) {
+		this.purchaseQuantity = purchaseQuantity;
+	}
+
+	public String getPurchaseUnit() {
+		return purchaseUnit;
+	}
+
+	public void setPurchaseUnit(String purchaseUnit) {
+		this.purchaseUnit = purchaseUnit;
 	}
 
 

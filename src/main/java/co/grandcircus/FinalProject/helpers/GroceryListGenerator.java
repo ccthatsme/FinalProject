@@ -12,38 +12,36 @@ public class GroceryListGenerator {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public List<Food> createGroceryList(Pantry p){
+
+	public List<Food> createGroceryList(Pantry p) {
 		List<Food> foodInPantry = p.getPantryFood();
 		List<Food> foodToBuy = new ArrayList<>();
-		
-		for(Food f : foodInPantry) {
+
+		for (Food f : foodInPantry) {
 			if (f.getQuantity() < 2) {
 				foodToBuy.add(f);
 			}
 		}
 		return foodToBuy;
-		
+
 	}
-	
-	public void buyAllFood (List<Food> fList, Pantry p){
-		for(Food f : fList ) {
-			f.setQuantity(f.getQuantity()+5);
+
+	public void buyAllFood(List<Food> fList, Pantry p) {
+		for (Food f : fList) {
+			f.setQuantity(f.getQuantity() + 5);
 		}
 	}
-	public void buySelected (List<Food> fList, List<Food> selectedList, Pantry p){
-			ArrayList<Food> food = new ArrayList<>();
-		for(Food f : selectedList) {
-			
-				for (Food select : fList) {
-					if(select.getName().equalsIgnoreCase(f.getName())) {
-						food.add(select);
-					}
+
+	public void buySelected(List<Food> fList, List<Food> selectedList, Pantry p) {
+		ArrayList<Food> food = new ArrayList<>();
+		for (Food selectedFood : selectedList) {
+			for (Food foodInGroceryList : fList) {
+				if (foodInGroceryList.getName().equalsIgnoreCase(selectedFood.getName())) {
+					foodInGroceryList.setQuantity(foodInGroceryList.getQuantity() + 5);
 				}
-				for(Food selectFood : food) {
-					selectFood.setQuantity(selectFood.getQuantity()+5);
-				}
-				
+			}
+
+		}
+
 	}
-		
-}}
+}

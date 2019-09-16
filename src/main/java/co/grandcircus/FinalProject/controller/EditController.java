@@ -1,5 +1,6 @@
 package co.grandcircus.FinalProject.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -137,6 +138,24 @@ public class EditController {
 		groceryListGenerator.buyAllFood(fList, p);
 		return new ModelAndView("user-pantry", "updatedPantry", u.getPantry());
 		
+	}
+	
+	@RequestMapping("buy-selected")
+	public ModelAndView buySelectedGroceries(@RequestParam("check") String checked) {
+		User u = (User) session.getAttribute("user");
+		Pantry p = u.getPantry();
+		List<Food> groceryList = groceryListGenerator.createGroceryList(p);
+		String [] selectedFoodNames = checked.split(",");
+		System.out.println(Arrays.toString(selectedFoodNames));
+		for (Food grocery : groceryList) {
+			for (String selectedName : selectedFoodNames) {
+				if (grocery.getName().equalsIgnoreCase(selectedName)) {
+					grocery.setQuantity(grocery.getQuantity() + 5);
+					foodRepo.save(grocery);
+				}
+			}
+		}
+		return new ModelAndView("user-pantry", "updatedPantry", u.getPantry());
 	}
 	
 	@RequestMapping("change-unit")
