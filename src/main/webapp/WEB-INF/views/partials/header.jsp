@@ -5,7 +5,7 @@
 <div id=container>
 	<div id="page-header">
 		<h1>Pantry Pal</h1>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<a class="navbar-brand" href="#">${user.email }</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarColor01" aria-controls="navbarColor01"

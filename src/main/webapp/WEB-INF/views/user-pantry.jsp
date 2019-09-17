@@ -8,11 +8,10 @@
 <meta charset="ISO-8859-1">
 <title>Whats In Your Pantry!</title>
 <link
-	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-hVpXlpdRmJ+uXGwD5W6HZMnR9ENcKVRn855pPbuI/mwPIEKAuKgTKgGksVGmlAvt"
+	integrity="sha384-N8DsABZCqc1XWbg/bAlIDk7AS/yNzT5fcKzg/TwfmTuUqZhGquVmpb5VvfmLcMzp"
 	crossorigin="anonymous">
-</head>
 <body>
 	<!-- This is an include directive and allows us to reuse other files in our pages so we don't have to duplicate code -->
 	<%@ include file="partials/header.jsp"%>
@@ -35,7 +34,7 @@
 
 		<h1>List of Pantry Items</h1>
 
-		<table class="table" style="width:100%">
+		<table class="table" style="width: 100%">
 			<tr>
 
 				<th>Name</th>
@@ -56,32 +55,31 @@
 					<td>${a.protein}</td>
 					<td>${a.quantity}</td>
 					<td>${a.quantityUnit}</td>
-					<td><a class="btn btn-secondary"
+					<td><a class="btn btn-success"
 						href="go-to-add-page?id=${a.id}"> add</a></td>
-					<td><a class="btn btn-secondary"
+					<td><a class="btn btn-danger"
 						href="go-to-subtract-page?id=${a.id}"> subtract</a></td>
 					<%-- <td><a class="btn btn-secondary" href="delete?id=${a.id}"> delete</a></td> --%>
 					<td><form action="change-unit">
 							<input type="hidden" value="${a.id }" name="id"> <input
-								list="unitChoice" name="unitChoice" required>
+								list="unitChoice" name="unitChoice" placeholder="Unit" required>
 							<datalist id="unitChoice">
 								<option value="cups">
 								<option value="tsp">
 								<option value="tbsp">
 								<option value="oz">
 							</datalist>
-							<input type="submit" class="btn btn-primary btn-sm"
+							<input type="submit" class="btn btn-warning btn-sm"
 								value="Change Display">
 						</form></td>
 				</tr>
 			</c:forEach>
 		</table>
 		<!-- NEW STUFF STARTS HERE -->
-		<a href="create-custom-food-page" class="btn btn-primary">Create
-			custom food</a> <a href="grocery-list" class="btn btn-primary">Create
-			Grocery list</a>
-			
-			<a href="meal-page" class="btn btn-primary">What Are You Eating?</a> 
+		<a href="create-custom-food-page" class="btn btn-info">Create
+			custom food</a> <a href="grocery-list" class="btn btn-info">Create
+			Grocery list</a> <a href="meal-page" class="btn btn-info">What Are
+			You Eating?</a>
 	</div>
 
 

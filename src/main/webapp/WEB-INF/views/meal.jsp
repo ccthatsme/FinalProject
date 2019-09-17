@@ -5,9 +5,9 @@
 <html>
 <head>
 <link
-	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-hVpXlpdRmJ+uXGwD5W6HZMnR9ENcKVRn855pPbuI/mwPIEKAuKgTKgGksVGmlAvt"
+	integrity="sha384-N8DsABZCqc1XWbg/bAlIDk7AS/yNzT5fcKzg/TwfmTuUqZhGquVmpb5VvfmLcMzp"
 	crossorigin="anonymous">
 <title>Create a Meal</title>
 </head>
@@ -47,7 +47,7 @@
 		<h4>How many recipes do you want to show?</h4>
 		<input type="number" name="items" placeholder="Number of Recipes" required>
 		<br>
-		<input type="submit" name="Add All">
+		<input type="submit" name="Add All" class="btn btn-info">
 		</form>
 	</div>
 	

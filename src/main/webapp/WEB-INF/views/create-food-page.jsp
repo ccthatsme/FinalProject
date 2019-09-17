@@ -8,9 +8,9 @@
 <meta charset="ISO-8859-1">
 <title>Whats In Your Pantry!</title>
 <link
-	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-hVpXlpdRmJ+uXGwD5W6HZMnR9ENcKVRn855pPbuI/mwPIEKAuKgTKgGksVGmlAvt"
+	integrity="sha384-N8DsABZCqc1XWbg/bAlIDk7AS/yNzT5fcKzg/TwfmTuUqZhGquVmpb5VvfmLcMzp"
 	crossorigin="anonymous">
 </head>
 <body>
@@ -21,7 +21,7 @@
 		<form action="create-custom-food">
 			<input type="text" name="name" placeholder="name"> <input
 				type="number" placeholder="1.0" step="0.01" min="0" name="Quantity"
-				required> <input list="unitChoice" name="quantityUnit"
+				required> <br><input list="unitChoice" name="quantityUnit" placeholder="Unit"
 				required>
 			<datalist id="unitChoice">
 				<option value="cups">
@@ -30,20 +30,20 @@
 				<option value="oz">
 			</datalist>
 			<input type="number" placeholder="calories" step="1" min="0"
-				name="calories" required> <input type="number"
+				name="calories" required> <br><input type="number"
 				placeholder="sugar" step="1" min="0" name="sugar"> <input
 				type="number" placeholder="carbs" step="1" min="0" name="carbs"
-				required> <input type="number" placeholder="protein"
+				required> <br><input type="number" placeholder="protein"
 				step="1" min="0" name="protein" required> <input
-				type="number" placeholder="fat" step="1" min="0" name="fat" required>
-			<input type="submit" value="Add to pantry">
+				type="number" placeholder="fat" step="1" min="0" name="fat" required><br>
+			<input type="submit" value="Add to pantry" class="btn btn-warning">
 		</form>
 
 		<h3>Add with quantity</h3>
 		<form action="create-custom-food">
 		<input type="text" name="name" placeholder="name">
 			<input type="number" placeholder="1.0" step="0.01" min="0" name="quantity"
-				required> <input list="unitChoice" name="quantityUnit"
+				required> <br><input list="unitChoice" name="quantityUnit" placeholder="Unit"
 				required>
 			<datalist id="unitChoice">
 				<option value="cups">
@@ -51,13 +51,13 @@
 				<option value="tbsp">
 				<option value="oz">
 			</datalist>
-			<input type="submit" value="Add to pantry">
+			<input type="submit" value="Add to pantry" class="btn btn-warning">
 		</form>
 
 		<h3>Add with only name (Note: the default value for measuring unit is oz):</h3>
 		<form action="create-custom-food">
 		<input type="text" name="name" placeholder="name">
-		<input type="submit" value="Add to pantry">
+		<input type="submit" value="Add to pantry" class="btn btn-warning">
 		</form>
 	</div>
 

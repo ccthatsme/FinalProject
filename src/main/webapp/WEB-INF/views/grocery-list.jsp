@@ -8,9 +8,9 @@
 <meta charset="ISO-8859-1">
 <title>Whats In Your Pantry!</title>
 <link
-	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-hVpXlpdRmJ+uXGwD5W6HZMnR9ENcKVRn855pPbuI/mwPIEKAuKgTKgGksVGmlAvt"
+	integrity="sha384-N8DsABZCqc1XWbg/bAlIDk7AS/yNzT5fcKzg/TwfmTuUqZhGquVmpb5VvfmLcMzp"
 	crossorigin="anonymous">
 </head>
 <body>
@@ -39,12 +39,12 @@
 			<c:forEach items="${groceries }" var="item">
 		${item.name }<br>
 				<td><input type="checkbox" name="check" value="${item.name }">
-					Check to Add<br></td>
+					Check to Add<br><br></td>
 			</c:forEach>
 
-			<input type="submit" value="Buy Selected" class="btn btn-primary">
+			<input type="submit" value="Buy Selected" class="btn btn-warning">
 		</form>
-		<a href="buy-all" class="btn btn-primary">Buy All</a>
+		<a href="buy-all" class="btn btn-warning">Buy All</a>
 	</div>
 
 </body>

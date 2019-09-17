@@ -8,9 +8,9 @@
 <meta charset="UTF-8">
 <title>User Account</title>
 <link
-	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-hVpXlpdRmJ+uXGwD5W6HZMnR9ENcKVRn855pPbuI/mwPIEKAuKgTKgGksVGmlAvt"
+	integrity="sha384-N8DsABZCqc1XWbg/bAlIDk7AS/yNzT5fcKzg/TwfmTuUqZhGquVmpb5VvfmLcMzp"
 	crossorigin="anonymous">
 
 </head>
@@ -28,11 +28,11 @@ ${sub.quantity } ${sub.quantityUnit } per day<br>
 	</c:forEach>
 
 	<form action="manage-subtractions">
-		<input type="submit" value="Manage Auto-subtractions">
+		<input type="submit" value="Manage Auto-subtractions" class="btn btn-info">
 	</form>
-
+	<br>
 	<form action="manage-grocery-settings">
-		<input type="submit" value="Manage Grocery Settings">
+		<input type="submit" value="Manage Grocery Settings" class="btn btn-info">
 	</form>
 	
 </body>
