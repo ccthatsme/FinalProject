@@ -8,9 +8,9 @@
 
 <title>Insert title here</title>
 <link
-	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lux/bootstrap.min.css"
+	href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/sketchy/bootstrap.min.css"
 	rel="stylesheet"
-	integrity="sha384-hVpXlpdRmJ+uXGwD5W6HZMnR9ENcKVRn855pPbuI/mwPIEKAuKgTKgGksVGmlAvt"
+	integrity="sha384-N8DsABZCqc1XWbg/bAlIDk7AS/yNzT5fcKzg/TwfmTuUqZhGquVmpb5VvfmLcMzp"
 	crossorigin="anonymous">
 </head>
 <body>
@@ -24,14 +24,14 @@
 	<form action="add-to-pantry">
 		<input type="hidden" value="${barcode }" name="barcode"> 
 		<input	type="number" name="quantity" placeholder="quantity" required>
-		 <input list="unitChoice" name="unitChoice" placeholder="measurements" required>
+		 <input list="unitChoice" name="unitChoice" placeholder="Unit" required>
 		<datalist id="unitChoice">
 			<option value="cups">
 			<option value="tsp">
 			<option value="tbsp">
 			<option value="oz">
 		</datalist>
-		<input type="submit" value="Add to Pantry">
+		<input type="submit" value="Add to Pantry" class="btn btn-warning">
 	</form>
 </body>
 </html>
