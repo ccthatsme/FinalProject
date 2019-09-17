@@ -12,6 +12,7 @@
 </head>
 <body>
 <div align="center">
+<%@ include file="partials/header.jsp"%>
 <h1>Recipe Options</h1>
 </div>
 <div class="container">

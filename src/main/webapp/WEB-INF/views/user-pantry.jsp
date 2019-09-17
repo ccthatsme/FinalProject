@@ -65,7 +65,7 @@
 					<%-- <td><a class="btn btn-secondary" href="delete?id=${a.id}"> delete</a></td> --%>
 					<td><form action="change-unit">
 							<input type="hidden" value="${a.id }" name="id"> <input
-								list="unitChoice" name="unitChoice">
+								list="unitChoice" name="unitChoice" required>
 							<datalist id="unitChoice">
 								<option value="cups">
 								<option value="tsp">
