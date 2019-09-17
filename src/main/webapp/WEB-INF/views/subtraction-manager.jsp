@@ -38,8 +38,8 @@ ${sub.quantity } ${sub.quantityUnit } per day<br>
 						type="hidden" value="${user.pantry.id }" name="pantry">
 					<td>${food.name }</td>
 					<td><input type="number" placeholder="1.0" step="0.01" min="0"
-						name="qty"></td>
-					<td><input list="unitChoice" name="unitChoice"> <datalist
+						name="qty" required></td>
+					<td><input list="unitChoice" name="unitChoice" required> <datalist
 							id="unitChoice">
 							<option value="cups">
 							<option value="tsp">
