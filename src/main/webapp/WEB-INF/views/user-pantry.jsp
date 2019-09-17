@@ -38,7 +38,6 @@
 		<table class="table" style="width:100%">
 			<tr>
 
-				<th>ID</th>
 				<th>Name</th>
 				<th>Calories</th>
 				<th>Protein</th>
@@ -52,7 +51,6 @@
 			</tr>
 			<c:forEach var="a" items="${user.pantry.pantryFood}">
 				<tr>
-					<td>${a.id}</td>
 					<td>${a.name}</td>
 					<td>${a.calories}</td>
 					<td>${a.protein}</td>
