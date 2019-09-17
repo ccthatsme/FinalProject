@@ -1,6 +1,7 @@
 
 package co.grandcircus.FinalProject.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import co.grandcircus.FinalProject.jpaEntity.Food;
 import co.grandcircus.FinalProject.jpaEntity.PossibleRecipe;
 import co.grandcircus.FinalProject.jpaEntity.User;
+import co.grandcircus.FinalProject.recipeApiEntity.CompleteRecipe;
 import co.grandcircus.FinalProject.repository.FoodRepository;
 import co.grandcircus.FinalProject.repository.PantryRepository;
 
@@ -100,7 +102,16 @@ public class MealController {
 
 		
 			HttpEntity<String> entity = new HttpEntity<>("parameters", headers);
-			ResponseEntity<List> response = rt.exchange(url, HttpMethod.GET, entity, List.class);
+			ResponseEntity<PossibleRecipe[]> response = rt.exchange(url, HttpMethod.GET, entity, PossibleRecipe[].class);
+			System.out.println(response.getBody().toString());
+			HashMap<PossibleRecipe, CompleteRecipe> recipeMap = new HashMap<>();
+			
+			for(PossibleRecipe recipe : response.getBody()) {
+				HttpEntity<String> newEntity = new HttpEntity<>("parameters", headers);
+				String newUrl = "https://api.spoonacular.com/recipes/" + recipe.getId() + "/information?apiKey=" + key;
+				ResponseEntity<CompleteRecipe> recipeInfo = rt.exchange(newUrl, HttpMethod.GET, newEntity, CompleteRecipe.class);
+				recipeMap.put(recipe, recipeInfo.getBody());
+			}
 //			//this came from the URL
 //			//apples,+flour,+sugar&number=2&apiKey=
 //			String url = "https://api.spoonacular.com/recipes/findByIngredients?ingredients="  + key;
@@ -117,7 +128,7 @@ public class MealController {
 			 * // } else if (i== ingredients.length-1) { // System.out.print(",+"); //
 			 * System.out.print(ingredients[i]); // }
 			 */ 
-		ModelAndView mv = new ModelAndView("recipe-page", "test", response.getBody());
+		ModelAndView mv = new ModelAndView("recipe-page", "recipeMap", recipeMap);
 //		List<Food> caloriesList = new ArrayList<Food>();
 //		if(check) {
 //			foodTwo = fRepo.getOne(id);

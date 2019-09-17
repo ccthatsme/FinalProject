@@ -17,26 +17,21 @@
 <div class="container">
 <table class="table">
   <tr>
-  	<th>ID</th>
     <th>Name</th>
     <th>Image</th>
     <th>List of Missing Ingredients</th>
    <!-- <th>List of Used Ingredients</th> -->
   </tr>
-  <c:forEach var="r" items="${test}">
+  <c:forEach var="r" items="${recipeMap}">
   <tr>
-    <td><a class="btn btn-secondary" href="${r.spoonacularSourceUrl }">${r.id}</a></td>
-    <td>${r.title}</td>
-    <td><img src="${r.image }"></td>
+    <td><a class="btn btn-secondary" href="${r.value.sourceUrl }"> ${r.value.title}</a></td>
+    <td><img src="${r.key.image }"></td>
     <td>
-    <c:forEach var="m" items="${r.missedIngredients}">
+    <c:forEach var="m" items="${r.key.missedIngredients}">
     ${m.name }<br>
     </c:forEach>
     
     </td>
-   <!-- <td><c:forEach var="u" items="${r.userIngredients}">
-    ${u.name }<br>
-    </c:forEach></td> -->
   </tr>
   </c:forEach>
 </table>

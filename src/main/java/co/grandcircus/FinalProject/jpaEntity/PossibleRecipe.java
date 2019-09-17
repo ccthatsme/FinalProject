@@ -12,10 +12,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PossibleRecipe {
 	
+	private Integer id;
 	private String title;
 	private String image;
 	private Integer usedIngredientCount;
 	private Integer missedIngredientCount;
+	private String sourceUrl;
 	private List<missedIngredients> missedIngredients;
 	private List<usedIngredients> usedIngredients;
 	
@@ -24,18 +26,22 @@ public class PossibleRecipe {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PossibleRecipe(String title, String image, Integer usedIngredientCount,
-			Integer missedIngredientCount,
+	public PossibleRecipe(Integer id, String title, String image, Integer usedIngredientCount,
+			Integer missedIngredientCount, String sourceUrl,
 			List<co.grandcircus.FinalProject.jpaEntity.missedIngredients> missedIngredients,
 			List<co.grandcircus.FinalProject.jpaEntity.usedIngredients> usedIngredients) {
 		super();
+		this.id = id;
 		this.title = title;
 		this.image = image;
 		this.usedIngredientCount = usedIngredientCount;
 		this.missedIngredientCount = missedIngredientCount;
+		this.sourceUrl = sourceUrl;
 		this.missedIngredients = missedIngredients;
 		this.usedIngredients = usedIngredients;
 	}
+
+
 
 	public String getTitle() {
 		return title;
@@ -84,14 +90,30 @@ public class PossibleRecipe {
 	public void setUsedIngredients(List<usedIngredients> usedIngredients) {
 		this.usedIngredients = usedIngredients;
 	}
+	
+	public String getSourceUrl() {
+		return sourceUrl;
+	}
 
+	public void setSourceUrl(String sourceUrl) {
+		this.sourceUrl = sourceUrl;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
 	@Override
 	public String toString() {
-		return "PossibleRecipe [title=" + title + ", image=" + image + ", usedIngredientCount="
-				+ usedIngredientCount + ", missedIngredientCount=" + missedIngredientCount + ", missedIngredients="
-				+ missedIngredients + ", usedIngredients=" + usedIngredients + "]";
-	} 
-	
-	
+		return "PossibleRecipe [title=" + title + ", image=" + image + ", usedIngredientCount=" + usedIngredientCount
+				+ ", missedIngredientCount=" + missedIngredientCount + ", sourceUrl=" + sourceUrl
+				+ ", missedIngredients=" + missedIngredients + ", usedIngredients=" + usedIngredients + "]";
+	}
+
+
 
 }
