@@ -22,7 +22,7 @@
 		<h1>Add Items</h1>
 		<form action="search">
 			<input type="text" name="barcode" placeholder="UPC Code"
-				class="form-control"> <input type="submit"
+				class="form-control" pattern="[0-9]"> <input type="submit"
 				class="btn btn-primary" value="Search">
 
 		</form>
