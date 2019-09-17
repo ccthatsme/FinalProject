@@ -19,6 +19,7 @@ Set how much you want to add to this item when you buy it from your grocery list
 	<table>
 		<tr>
 			<th>Name</th>
+			<th>Current Setting</th>
 			<th>Quantity</th>
 			<th>Unit</th>
 			<th>Submit</th>
@@ -29,9 +30,10 @@ Set how much you want to add to this item when you buy it from your grocery list
 					<input type="hidden" value="${food.id }" name="food"> <input
 						type="hidden" value="${user.pantry.id }" name="pantry">
 					<td>${food.name }</td>
+					<td>${food.purchaseQuantity } ${food.purchaseUnit }</td>
 					<td><input type="number" placeholder="1.0" step="0.01" min="0"
-						name="qty"></td>
-					<td><input list="unitChoice" name="unitChoice"> <datalist
+						name="qty" required></td>
+					<td><input list="unitChoice" name="unitChoice" required> <datalist
 							id="unitChoice">
 							<option value="cups">
 							<option value="tsp">
