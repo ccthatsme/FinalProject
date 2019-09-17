@@ -45,7 +45,7 @@
 		</c:forEach>
 		</table>
 		<h4>How many recipes do you want to show?</h4>
-		<input type="number" name="items" placeholder="Number of Recipes">
+		<input type="number" name="items" placeholder="Number of Recipes" required>
 		<br>
 		<input type="submit" name="Add All">
 		</form>

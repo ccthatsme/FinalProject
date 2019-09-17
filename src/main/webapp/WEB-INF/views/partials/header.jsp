@@ -4,7 +4,7 @@
 
 <div id=container>
 	<div id="page-header">
-		<h1>Pantry Project</h1>
+		<h1>Pantry Pal</h1>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 			<a class="navbar-brand" href="#">${user.email }</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
