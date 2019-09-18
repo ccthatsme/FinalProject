@@ -30,22 +30,7 @@ public class ScheduledSubtractHandler {
 	
 	public ScheduledSubtractHandler() {
 		super();
-		//ADD TESTING SUBTRACTION TO LIST. REOMVE LATER
 	}
-
-//	public ScheduledSubtractHandler(ArrayList<AutoSubtraction> subList) {
-//		super();
-//		this.subList = subList;
-//		//ADD TESTING SUBTRACTION TO LIST. REMOVE LATER
-//		AutoSubtraction a = aRepo.findAll().get(0);
-//		subList.add(a);
-//		System.out.println(a);
-//	}
-
-//	@Scheduled(fixedRate = 5000)
-//    public void reportCurrentTime() {
-//        System.out.println("The time is now " + dateFormat.format(new Date()));
-//	}
 	
 	@Scheduled(fixedRate = 50000)
 	public void handleAutoSubtractions() {
@@ -71,7 +56,6 @@ public class ScheduledSubtractHandler {
 			//check if the new value would be less than 0 and if it would, set it to 0
 			if (newQuant <= 0) {
 				newQuant = 0;
-				//System.out.println("You're out of " + f.getName() + "!");
 			}
 			
 			
@@ -80,7 +64,7 @@ public class ScheduledSubtractHandler {
 			//save the updated value to the database
 			fRepo.save(f);
 			
-			System.out.println("Subtracted " + sub.getQuantity() + " " + u + " of " + f.getName() + " for a new total of " + f.getQuantity() + " " + f.getQuantityUnit());
+			System.out.println("Subtracted " + sub.getQuantity() + " " + u + " of " + f.getName() + " from " + currentQuantity + f.getQuantityUnit() + " for a new total of " + f.getQuantity() + " " + f.getQuantityUnit());
 		}
 	}
 	

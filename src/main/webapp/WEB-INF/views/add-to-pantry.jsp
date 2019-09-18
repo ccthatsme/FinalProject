@@ -21,15 +21,15 @@
 	<form action="add-amt">
 <input type="hidden" value="${food.id }" name="food">
 <input type="number" placeholder="1.0" step="0.01" min="0"
-						name="qty">
-					<input list="unitChoice" name="unitChoice"> <datalist
+						name="qty" required>
+					<input list="unitChoice" name="unitChoice" required> <datalist
 							id="unitChoice">
 							<option value="cups">
 							<option value="tsp">
 							<option value="tbsp">
 							<option value="oz">
 						</datalist>
-					<input type="submit" class="btn btn-primary"
+					<input type="submit" class="btn btn-info"
 						value="Add">
 </body>
 </html>

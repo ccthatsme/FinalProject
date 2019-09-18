@@ -21,9 +21,12 @@
 	<p>${user.email }</p>
 	<h4>Auto-subtractions</h4>
 	<c:forEach items="${subtractions }" var="sub">
+	<form action="remove-autosubtraction">
+	<input type="hidden" value="${sub.id }" name="sub-to-remove">
 		<h5>${sub.food.name }</h5>
-		<br>
 ${sub.quantity } ${sub.quantityUnit } per day<br>
+<input type="submit" value="Cancel" class="btn btn-danger">
+</form>
 
 	</c:forEach>
 

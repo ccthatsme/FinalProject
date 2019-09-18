@@ -17,6 +17,7 @@ import co.grandcircus.FinalProject.helpers.GroceryListGenerator;
 import co.grandcircus.FinalProject.jpaEntity.Food;
 import co.grandcircus.FinalProject.jpaEntity.Pantry;
 import co.grandcircus.FinalProject.jpaEntity.User;
+import co.grandcircus.FinalProject.repository.AutoSubtractionRepository;
 import co.grandcircus.FinalProject.repository.FoodRepository;
 import co.grandcircus.FinalProject.repository.PantryRepository;
 
@@ -31,6 +32,9 @@ public class EditController {
 	@Autowired
 	PantryRepository pRepo;
 
+	@Autowired
+	AutoSubtractionRepository aRepo;
+	
 	GroceryListGenerator groceryListGenerator = new GroceryListGenerator();
 
 	CookingUnitConverter converter = new CookingUnitConverter();
@@ -113,6 +117,9 @@ public class EditController {
 		Double convertedSubtraction = converter.convert(qtyToAdd, additionUnit, targetUnit);
 
 		Double newAmt = initialQty - convertedSubtraction;
+		if(newAmt < 0) {
+			newAmt = 0.0;
+		}
 
 		f.setQuantity(newAmt);
 		foodRepo.save(f);
@@ -201,5 +208,12 @@ public class EditController {
 		foodRepo.save(f);
 		return new ModelAndView("redirect:/login?email=" + u.getEmail() + "&password=" + u.getPassword());
 
+	}
+	
+	@RequestMapping("remove-autosubtraction")
+	public ModelAndView removeAutoSub(@RequestParam("sub-to-remove") Integer subId) {
+		User u = (User) session.getAttribute("user");
+		aRepo.deleteById(subId);
+		return new ModelAndView("redirect:/login?email=" + u.getEmail() + "&password=" + u.getPassword());
 	}
 }

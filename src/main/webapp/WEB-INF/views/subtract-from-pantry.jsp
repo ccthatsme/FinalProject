@@ -29,7 +29,7 @@
 			<option value="tbsp">
 			<option value="oz">
 		</datalist>
-		<input type="submit" class="btn btn-primary" value="Subtract">
+		<input type="submit" class="btn btn-info" value="Subtract">
 
 	</form>
 </body>

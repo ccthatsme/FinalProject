@@ -11,7 +11,7 @@
 	integrity="sha384-N8DsABZCqc1XWbg/bAlIDk7AS/yNzT5fcKzg/TwfmTuUqZhGquVmpb5VvfmLcMzp"
 	crossorigin="anonymous">
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Pantry Pal</title>
 </head>
 <body>
 	<div align="center">
