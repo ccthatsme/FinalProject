@@ -16,9 +16,9 @@
 <body>
 	<!-- This is an include directive and allows us to reuse other files in our pages so we don't have to duplicate code -->
 	<%@ include file="partials/header.jsp"%>
+<h1>Oops! Looks like something went wrong.</h1>
+	${errorMessage }
 
-	<h1>Oops! Look like something went wrong.</h1>
-	Sorry about that!
 
 	<a href="user-pantry" class="btn btn-info">Return home</a>
 	</form>

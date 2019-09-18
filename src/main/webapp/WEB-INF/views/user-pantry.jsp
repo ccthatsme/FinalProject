@@ -77,9 +77,8 @@
 		</table>
 		<!-- NEW STUFF STARTS HERE -->
 		<a href="create-custom-food-page" class="btn btn-info">Create
-			custom food</a> <a href="grocery-list" class="btn btn-info">Create
-			Grocery list</a> <a href="meal-page" class="btn btn-info">What Are
-			You Eating?</a>
+			Custom Food</a> <a href="grocery-list" class="btn btn-info">Create
+			Grocery list</a> <a href="meal-page" class="btn btn-info">Find a Meal</a>
 	</div>
 
 

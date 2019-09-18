@@ -25,7 +25,7 @@
 			<input type="password" name="password" placeholder="password">
 			<input type="submit" value="submit" class="btn btn-info">
 		</form>
-
+<div style="color:red">${message }</div>
 
 
 	</div>

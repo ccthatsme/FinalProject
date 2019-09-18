@@ -50,7 +50,7 @@ public class LoginController {
 				return new ModelAndView("user-pantry", "a", user);
 			}
 			else {
-				return new ModelAndView("wrong-login");
+				return new ModelAndView("log-in", "message", "Sorry, that username and password combination was incorrect.");
 			}
 		} else {
 			User u = repo.findByEmail(user.getEmail());
@@ -58,7 +58,7 @@ public class LoginController {
 				session.setAttribute("user", u);
 				return new ModelAndView("user-pantry", "a", user);
 			} else {
-				return new ModelAndView("wrong-login");
+				return new ModelAndView("log-in","message", "Sorry, that username and password combination was incorrect.");
 			}
 		}
 	}
