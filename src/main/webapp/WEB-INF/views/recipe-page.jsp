@@ -15,7 +15,7 @@
 
 </head>
 <body>
-	<div align="center">
+	<div>
 		<%@ include file="partials/header.jsp"%>
 		<h1>Recipe Options</h1>
 	</div>

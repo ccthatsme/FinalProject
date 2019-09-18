@@ -216,4 +216,10 @@ public class EditController {
 		aRepo.deleteById(subId);
 		return new ModelAndView("redirect:/login?email=" + u.getEmail() + "&password=" + u.getPassword());
 	}
+	
+	@RequestMapping("refresh-pantry")
+	public ModelAndView refreshPantry() {
+		User u = (User) session.getAttribute("user");
+		return new ModelAndView("redirect:/login?email=" + u.getEmail() + "&password=" + u.getPassword());
+	}
 }
